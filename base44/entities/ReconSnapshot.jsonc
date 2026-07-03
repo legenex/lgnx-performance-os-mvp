@@ -1,0 +1,40 @@
+{
+  "name": "ReconSnapshot",
+  "type": "object",
+  "properties": {
+    "week_of": {
+      "type": "string",
+      "format": "date"
+    },
+    "cash": {
+      "type": "number",
+      "default": 0
+    },
+    "receivables": {
+      "type": "number",
+      "default": 0
+    },
+    "payables": {
+      "type": "number",
+      "default": 0
+    },
+    "media_gap": {
+      "type": "number",
+      "default": 0
+    },
+    "monday_number": {
+      "type": "number",
+      "default": 0
+    },
+    "runway_weeks": {
+      "type": "number",
+      "default": 0
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "week_of"
+  ]
+}

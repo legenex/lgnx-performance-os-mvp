@@ -1,0 +1,37 @@
+{
+  "name": "XeroPayment",
+  "type": "object",
+  "properties": {
+    "xero_payment_id": {
+      "type": "string"
+    },
+    "invoice_id": {
+      "type": "string"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "matched_bank_transaction_id": {
+      "type": "string"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

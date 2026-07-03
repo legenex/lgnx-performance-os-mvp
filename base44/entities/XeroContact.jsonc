@@ -1,0 +1,36 @@
+{
+  "name": "XeroContact",
+  "type": "object",
+  "properties": {
+    "xero_contact_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Buyer",
+        "Supplier",
+        "Other",
+        "Unknown"
+      ]
+    },
+    "mapped_buyer_id": {
+      "type": "string"
+    },
+    "mapped_supplier_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "CategorizationRule",
+  "type": "object",
+  "properties": {
+    "pattern": {
+      "type": "string"
+    },
+    "account_scope": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "cash_type": {
+      "type": "string"
+    },
+    "counterparty": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "number",
+      "default": 0
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "pattern",
+    "category"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "AdSpend",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign": {
+      "type": "string"
+    },
+    "cost": {
+      "type": "number",
+      "default": 0
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "API",
+        "CSV",
+        "Sheet",
+        "Manual"
+      ]
+    },
+    "paid_status": {
+      "type": "string",
+      "enum": [
+        "Paid",
+        "Unpaid",
+        "Unknown"
+      ]
+    },
+    "superseded": {
+      "type": "boolean",
+      "default": false
+    },
+    "import_batch_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "platform"
+  ]
+}

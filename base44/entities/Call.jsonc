@@ -1,0 +1,61 @@
+{
+  "name": "Call",
+  "type": "object",
+  "properties": {
+    "call_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "campaign": {
+      "type": "string"
+    },
+    "buyer": {
+      "type": "string"
+    },
+    "caller_number": {
+      "type": "string"
+    },
+    "payout": {
+      "type": "number",
+      "default": 0
+    },
+    "revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "converted": {
+      "type": "boolean",
+      "default": false
+    },
+    "duration_seconds": {
+      "type": "number"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Ringba",
+        "TrueCall",
+        "Walker",
+        "AG1",
+        "Manual"
+      ]
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "linked_lead_key": {
+      "type": "string"
+    },
+    "import_batch_id": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,52 @@
+{
+  "name": "APEntry",
+  "type": "object",
+  "properties": {
+    "supplier_name": {
+      "type": "string"
+    },
+    "supplier_sid": {
+      "type": "string"
+    },
+    "entry_type": {
+      "type": "string",
+      "enum": [
+        "Opening Balance",
+        "Accrual",
+        "Payment",
+        "Adjustment",
+        "Statement Import"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "ref": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "xero_bill_id": {
+      "type": "string"
+    },
+    "bank_transaction_id": {
+      "type": "string"
+    },
+    "import_batch_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_name",
+    "entry_type"
+  ]
+}

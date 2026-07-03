@@ -1,0 +1,51 @@
+{
+  "name": "SupplierStatement",
+  "type": "object",
+  "properties": {
+    "supplier_name": {
+      "type": "string"
+    },
+    "statement_period_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "statement_period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "amount_claimed": {
+      "type": "number",
+      "default": 0
+    },
+    "amount_reconciled": {
+      "type": "number",
+      "default": 0
+    },
+    "variance": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Imported",
+        "Reconciled",
+        "Variance",
+        "Disputed"
+      ]
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "imported_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_name"
+  ]
+}

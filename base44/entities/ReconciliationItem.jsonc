@@ -1,0 +1,59 @@
+{
+  "name": "ReconciliationItem",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "AR Match",
+        "AP Match",
+        "Bank Match",
+        "Xero Match",
+        "Media Gap",
+        "Supplier Variance",
+        "Lead Variance"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Matched",
+        "Resolved",
+        "Ignored"
+      ]
+    },
+    "source_value": {
+      "type": "number",
+      "default": 0
+    },
+    "target_value": {
+      "type": "number",
+      "default": 0
+    },
+    "variance": {
+      "type": "number",
+      "default": 0
+    },
+    "description": {
+      "type": "string"
+    },
+    "linked_entity_type": {
+      "type": "string"
+    },
+    "linked_entity_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "status"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "Alert",
+  "type": "object",
+  "properties": {
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Critical",
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Cash",
+        "AR",
+        "AP",
+        "Media",
+        "Lead",
+        "Xero",
+        "Import",
+        "Reconciliation"
+      ]
+    },
+    "message": {
+      "type": "string"
+    },
+    "entity_type": {
+      "type": "string"
+    },
+    "entity_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Resolved",
+        "Ignored"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "severity",
+    "message",
+    "status"
+  ]
+}

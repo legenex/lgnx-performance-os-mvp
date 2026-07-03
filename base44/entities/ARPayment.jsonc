@@ -1,0 +1,35 @@
+{
+  "name": "ARPayment",
+  "type": "object",
+  "properties": {
+    "buyer_name": {
+      "type": "string"
+    },
+    "payment_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "bank_transaction_id": {
+      "type": "string"
+    },
+    "xero_payment_id": {
+      "type": "string"
+    },
+    "matched_invoice_id": {
+      "type": "string"
+    },
+    "match_confidence": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "buyer_name"
+  ]
+}

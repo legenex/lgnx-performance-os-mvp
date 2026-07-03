@@ -1,0 +1,36 @@
+{
+  "name": "WeeklyBudget",
+  "type": "object",
+  "properties": {
+    "week_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "media_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "owner_draw_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "supplier_paydown_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "payroll_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "tools_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "week_start"
+  ]
+}

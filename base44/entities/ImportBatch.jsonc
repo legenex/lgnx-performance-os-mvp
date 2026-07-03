@@ -1,0 +1,33 @@
+{
+  "name": "ImportBatch",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string"
+    },
+    "file_name": {
+      "type": "string"
+    },
+    "imported_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "rows_imported": {
+      "type": "number",
+      "default": 0
+    },
+    "rows_failed": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "source"
+  ]
+}

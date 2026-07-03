@@ -1,0 +1,81 @@
+{
+  "name": "BankTransaction",
+  "type": "object",
+  "properties": {
+    "transaction_id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "counterparty": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "category": {
+      "type": "string"
+    },
+    "subcategory": {
+      "type": "string"
+    },
+    "cash_type": {
+      "type": "string",
+      "enum": [
+        "Buyer Collection",
+        "Media Spend",
+        "Supplier Payout",
+        "Payroll",
+        "Tool",
+        "Contractor",
+        "Owner Draw",
+        "Personal",
+        "House Build",
+        "Investment",
+        "Fee",
+        "Transfer",
+        "Other Income",
+        "Unknown"
+      ]
+    },
+    "match_status": {
+      "type": "string",
+      "enum": [
+        "Unmatched",
+        "Matched to Invoice",
+        "Matched to Bill",
+        "Matched to Supplier",
+        "Ignored"
+      ],
+      "default": "Unmatched"
+    },
+    "matched_entity_type": {
+      "type": "string"
+    },
+    "matched_entity_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Mercury",
+        "Xero",
+        "CSV",
+        "Manual"
+      ]
+    },
+    "import_batch_id": {
+      "type": "string"
+    }
+  },
+  "required": []
+}

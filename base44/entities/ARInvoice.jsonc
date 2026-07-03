@@ -1,0 +1,77 @@
+{
+  "name": "ARInvoice",
+  "type": "object",
+  "properties": {
+    "invoice_number": {
+      "type": "string"
+    },
+    "buyer_name": {
+      "type": "string"
+    },
+    "billing_cycle": {
+      "type": "string"
+    },
+    "period_start": {
+      "type": "string",
+      "format": "date"
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date"
+    },
+    "lead_count": {
+      "type": "number",
+      "default": 0
+    },
+    "call_count": {
+      "type": "number",
+      "default": 0
+    },
+    "booked_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "collected_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "outstanding_amount": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Issued",
+        "Sent",
+        "Partially Paid",
+        "Paid",
+        "Overdue",
+        "Disputed"
+      ]
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "xero_invoice_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Xero",
+        "PerformanceOS",
+        "CSV",
+        "Manual"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "buyer_name"
+  ]
+}

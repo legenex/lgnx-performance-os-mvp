@@ -1,0 +1,43 @@
+{
+  "name": "XeroBankTransaction",
+  "type": "object",
+  "properties": {
+    "xero_bank_transaction_id": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number",
+      "default": 0
+    },
+    "type": {
+      "type": "string"
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "matched_bank_transaction_id": {
+      "type": "string"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

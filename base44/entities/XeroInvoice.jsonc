@@ -1,0 +1,66 @@
+{
+  "name": "XeroInvoice",
+  "type": "object",
+  "properties": {
+    "xero_invoice_id": {
+      "type": "string"
+    },
+    "invoice_number": {
+      "type": "string"
+    },
+    "contact_name": {
+      "type": "string"
+    },
+    "contact_id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "ACCREC",
+        "ACCPAY"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "issue_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "total": {
+      "type": "number",
+      "default": 0
+    },
+    "amount_due": {
+      "type": "number",
+      "default": 0
+    },
+    "amount_paid": {
+      "type": "number",
+      "default": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "mapped_entity_type": {
+      "type": "string"
+    },
+    "mapped_entity_id": {
+      "type": "string"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,35 @@
+{
+  "name": "XeroConnection",
+  "type": "object",
+  "properties": {
+    "tenant_id": {
+      "type": "string"
+    },
+    "tenant_name": {
+      "type": "string"
+    },
+    "connection_status": {
+      "type": "string",
+      "enum": [
+        "Not Connected",
+        "Connected",
+        "Error",
+        "Expired"
+      ]
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "scopes": {
+      "type": "string"
+    },
+    "token_status": {
+      "type": "string"
+    },
+    "error_message": {
+      "type": "string"
+    }
+  },
+  "required": []
+}
