@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Landmark, BarChart2, Megaphone, Radio, Database, ChevronDown } from 'lucide-react';
+import { LayoutDashboard, Landmark, BarChart2, Megaphone, Settings, ChevronDown } from 'lucide-react';
 import { SECTIONS } from '@/lib/navConfig';
 import RealityBar from '@/components/shared/RealityBar';
 
-const ICON_MAP = { LayoutDashboard, Landmark, BarChart2, Megaphone, Radio, Database };
+const ICON_MAP = { LayoutDashboard, Landmark, BarChart2, Megaphone, Settings };
 
 export default function AppLayout() {
   const location = useLocation();
@@ -111,7 +111,7 @@ export default function AppLayout() {
         </nav>
 
         <div className="border-t border-sidebar-border px-4 py-3">
-          <p className="text-center text-[10px] text-sidebar-foreground">v2.0.0</p>
+          <p className="text-center text-[10px] text-sidebar-foreground">v3.0.0</p>
         </div>
       </aside>
 

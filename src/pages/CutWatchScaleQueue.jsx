@@ -87,7 +87,7 @@ export default function CutWatchScaleQueue() {
     a.click();
   }
 
-  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-6 h-6 border-2 border-muted-foreground/30 border-t-muted-foreground rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-64"><div className="w-6 h-6 border-2 border-muted-foreground/30 border-t-primary rounded-full animate-spin" /></div>;
 
   return (
     <div className="space-y-6">
@@ -98,19 +98,19 @@ export default function CutWatchScaleQueue() {
 
       {/* Summary */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-lg border border-red-500/20 p-4" style={{ background: '#14171C' }}>
+        <div className="rounded-lg border border-critical/20 p-4" >
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Cut</span>
             <span className="text-2xl font-bold text-critical tabular-nums">{cutCount}</span>
           </div>
         </div>
-        <div className="rounded-lg border border-yellow-500/20 p-4" style={{ background: '#14171C' }}>
+        <div className="rounded-lg border border-warning/20 p-4" >
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Watch</span>
             <span className="text-2xl font-bold text-warning tabular-nums">{watchCount}</span>
           </div>
         </div>
-        <div className="rounded-lg border border-emerald-500/20 p-4" style={{ background: '#14171C' }}>
+        <div className="rounded-lg border border-success/20 p-4" >
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Scale</span>
             <span className="text-2xl font-bold text-success tabular-nums">{scaleCount}</span>
@@ -204,7 +204,7 @@ export default function CutWatchScaleQueue() {
       {/* Decision Rules */}
       <SectionPanel title="Decision Rules" subtitle="Automatic SCALE / WATCH / CUT logic">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-          <div className="p-3 rounded border border-emerald-500/20" style={{ background: '#1A1E24' }}>
+          <div className="p-3 rounded border border-success/20" >
             <p className="font-semibold text-success mb-1">SCALE when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Positive true gross margin</li>
@@ -214,7 +214,7 @@ export default function CutWatchScaleQueue() {
               <li>• Buyer feedback acceptable</li>
             </ul>
           </div>
-          <div className="p-3 rounded border border-yellow-500/20" style={{ background: '#1A1E24' }}>
+          <div className="p-3 rounded border border-warning/20" >
             <p className="font-semibold text-warning mb-1">WATCH when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Booked margin positive but cash unclear</li>
@@ -224,7 +224,7 @@ export default function CutWatchScaleQueue() {
               <li>• Early positive trend</li>
             </ul>
           </div>
-          <div className="p-3 rounded border border-red-500/20" style={{ background: '#1A1E24' }}>
+          <div className="p-3 rounded border border-critical/20" >
             <p className="font-semibold text-critical mb-1">CUT when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Negative true margin after enough spend</li>
@@ -234,7 +234,7 @@ export default function CutWatchScaleQueue() {
               <li>• Cash margin strongly negative</li>
             </ul>
           </div>
-          <div className="p-3 rounded border border-border" style={{ background: '#1A1E24' }}>
+          <div className="p-3 rounded border border-border" >
             <p className="font-semibold text-muted-foreground mb-1">UNKNOWN when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Spend, calls, or lead mapping missing</li>

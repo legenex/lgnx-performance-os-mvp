@@ -3,21 +3,22 @@ import { base44 } from '@/api/base44Client';
 import { formatNumber } from '@/lib/formatters';
 import SectionPanel from '@/components/shared/SectionPanel';
 import StatusBadge from '@/components/shared/StatusBadge';
-import { Landmark, RefreshCw, Radio, Database, Megaphone, Phone, Users, FileText, Zap, Shield, Plug } from 'lucide-react';
+import { Landmark, RefreshCw, Radio, Database, Megaphone, Phone, Users, FileText } from 'lucide-react';
 
 const SOURCES = [
-  { key: 'bank', name: 'Bank / Mercury', icon: Landmark, entity: 'BankTransaction' },
-  { key: 'xero', name: 'Xero', icon: RefreshCw, entity: 'XeroInvoice' },
-  { key: 'leadbyte', name: 'LeadByte', icon: Radio, entity: 'GatewayLead' },
-  { key: 'bigquery', name: 'BigQuery / Masterview', icon: Database, entity: 'CampaignTruthMetric' },
-  { key: 'meta', name: 'Meta / Google / Taboola', icon: Megaphone, entity: 'AdDailyMetric' },
-  { key: 'calls', name: 'Ringba / Walker / Calls', icon: Phone, entity: 'Call' },
-  { key: 'supplier', name: 'Supplier Statements', icon: Users, entity: 'SupplierStatement' },
-  { key: 'buyer', name: 'Buyer Feedback', icon: FileText, entity: 'BuyerDeliveryLog' },
-  { key: 'gateway', name: 'Lead Gateway', icon: Radio, entity: 'GatewayWebhookEvent' },
-  { key: 'capi', name: 'CAPI Logs', icon: Zap, entity: 'EventTrackingLog' },
-  { key: 'trustedform', name: 'TrustedForm / Jornaya', icon: Shield, entity: 'ComplianceRecord' },
-  { key: 'connections', name: 'Source Connections', icon: Plug, entity: 'ImportBatch' },
+  { key: 'bank', name: 'Bank / Mercury', icon: Landmark, entity: 'BankTransaction', required: true },
+  { key: 'xero', name: 'Xero', icon: RefreshCw, entity: 'XeroInvoice', required: true },
+  { key: 'stripe', name: 'Stripe', icon: Landmark, entity: 'BankTransaction', required: false },
+  { key: 'leadbyte', name: 'LeadByte', icon: Radio, entity: 'GatewayLead', required: true },
+  { key: 'bigquery', name: 'BigQuery / Masterview', icon: Database, entity: 'CampaignTruthMetric', required: true },
+  { key: 'meta', name: 'Meta', icon: Megaphone, entity: 'AdDailyMetric', required: true },
+  { key: 'google', name: 'Google', icon: Megaphone, entity: 'AdDailyMetric', required: true },
+  { key: 'youtube', name: 'YouTube', icon: Megaphone, entity: 'AdDailyMetric', required: false },
+  { key: 'taboola', name: 'Taboola', icon: Megaphone, entity: 'AdDailyMetric', required: false },
+  { key: 'calls', name: 'Ringba / Walker / TrueCall', icon: Phone, entity: 'Call', required: true },
+  { key: 'supplier', name: 'Supplier Statements', icon: Users, entity: 'SupplierStatement', required: true },
+  { key: 'buyer', name: 'Buyer Feedback', icon: FileText, entity: 'BuyerDeliveryLog', required: true },
+  { key: 'gateway', name: 'Lead Gateway Export', icon: Radio, entity: 'GatewayWebhookEvent', required: false },
 ];
 
 export default function DataSources() {
@@ -88,18 +89,25 @@ export default function DataSources() {
                 <span className="text-[11px] text-muted-foreground">Errors</span>
                 <span className={`text-[11px] font-medium ${src.errors > 0 ? 'text-critical' : 'text-muted-foreground'}`}>{src.errors}</span>
               </div>
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] text-muted-foreground">Type</span>
+                <span className={`text-[11px] font-medium ${src.required ? 'text-critical' : 'text-muted-foreground'}`}>{src.required ? 'Required' : 'Optional'}</span>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      <SectionPanel title="Connection Notes" subtitle="Xero is a backend data source only, not a standalone workflow">
+      <SectionPanel title="Source Notes" subtitle="All sources feed into the performance truth calculations">
         <div className="space-y-2 text-[13px] text-muted-foreground">
-          <p>• <span className="text-foreground font-medium">Xero</span> — syncs invoices, bank transactions, and contacts as a data source. Used inside Income Check, Payables, and Reconciliation.</p>
-          <p>• <span className="text-foreground font-medium">Bank / Mercury</span> — bank transactions are imported and categorized for cash flow analysis.</p>
-          <p>• <span className="text-foreground font-medium">LeadByte</span> — lead data synced from the gateway for reconciliation against performance metrics.</p>
-          <p>• <span className="text-foreground font-medium">Meta / Google / Taboola</span> — ad spend and performance metrics imported via CSV or API.</p>
-          <p>• <span className="text-foreground font-medium">Ringba / Walker</span> — call tracking data for call revenue attribution.</p>
+          <p>• <span className="text-foreground font-medium">Bank / Mercury</span> — bank transactions categorized for cash income verification.</p>
+          <p>• <span className="text-foreground font-medium">Xero</span> — invoices and payments as a data source for reconciliation.</p>
+          <p>• <span className="text-foreground font-medium">Stripe</span> — payment verification for online transactions.</p>
+          <p>• <span className="text-foreground font-medium">LeadByte</span> — lead performance data for revenue reporting.</p>
+          <p>• <span className="text-foreground font-medium">Meta / Google / YouTube / Taboola</span> — ad spend and performance metrics by platform.</p>
+          <p>• <span className="text-foreground font-medium">Ringba / Walker / TrueCall</span> — call tracking for call revenue attribution.</p>
+          <p>• <span className="text-foreground font-medium">Supplier Statements</span> — supplier cost data for true CPL calculation.</p>
+          <p>• <span className="text-foreground font-medium">Buyer Feedback</span> — delivery logs for DQ, return, and quality metrics.</p>
         </div>
       </SectionPanel>
     </div>
