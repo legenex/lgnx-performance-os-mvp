@@ -168,7 +168,7 @@ export default function CashBanking() {
                   </td>
                   <td className="py-2">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                      txn.match_status === 'Unmatched' ? 'bg-yellow-500/10 text-yellow-400' : 'bg-emerald-500/10 text-emerald-400'
+                      txn.match_status === 'Unmatched' ? 'bg-warning/10 text-warning' : 'bg-success/10 text-success'
                     }`}>{txn.match_status || 'Unmatched'}</span>
                   </td>
                 </tr>
@@ -185,14 +185,14 @@ export default function CashBanking() {
             <table className="w-full text-xs">
               <thead>
                 <tr className="text-left text-muted-foreground border-b border-border">
-                  <th className="pb-2 pr-3 sticky left-0" style={{ background: '#14171C' }}>Category</th>
+                  <th className="pb-2 pr-3 sticky left-0" style={{ background: 'hsl(var(--card))' }}>Category</th>
                   {months.map(m => <th key={m} className="pb-2 pr-3 text-right tabular-nums">{m}</th>)}
                 </tr>
               </thead>
               <tbody>
                 {CATEGORIES.filter(cat => months.some(m => matrixData[cat][m] !== 0)).map(cat => (
                   <tr key={cat} className="border-b border-border/30">
-                    <td className="py-1.5 pr-3 text-muted-foreground sticky left-0" style={{ background: '#14171C' }}>{cat}</td>
+                    <td className="py-1.5 pr-3 text-muted-foreground sticky left-0" style={{ background: 'hsl(var(--card))' }}>{cat}</td>
                     {months.map(m => (
                       <td key={m} className={`py-1.5 pr-3 text-right tabular-nums ${moneyColor(matrixData[cat][m])}`}>
                         {matrixData[cat][m] !== 0 ? formatMoney(matrixData[cat][m]) : '—'}

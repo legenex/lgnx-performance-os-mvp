@@ -182,19 +182,19 @@ export default function CampaignMargin() {
       </div>
 
       {!hasCallData && (
-        <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
+        <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-critical/10 border border-critical/20">
           <AlertTriangle className="w-4 h-4 text-critical" />
-          <span className="text-xs text-red-300 font-medium">Call revenue missing. Campaign margin may be understated. Import call data from Ringba/TrueCall/Walker.</span>
+          <span className="text-xs text-critical font-medium">Call revenue missing. Campaign margin may be understated. Import call data from Ringba/TrueCall/Walker.</span>
         </div>
       )}
 
       <WarningBanner>Campaign margin is incomplete without calls. Do not rely only on masterview profit. True margin = web lead revenue + call revenue − tracked spend − supplier payout.</WarningBanner>
 
       {trackingBroken.length > 0 && (
-        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-critical/10 border border-critical/20">
           <AlertTriangle className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-xs text-red-300 font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
+            <p className="text-xs text-critical font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{trackingBroken.slice(0, 3).join(', ')}</p>
           </div>
         </div>
@@ -229,7 +229,7 @@ export default function CampaignMargin() {
                 {truthData.map((r, i) => (
                   <tr key={i} className="border-b border-border/30 hover:bg-white/5">
                     <td className="py-2 pr-3 font-medium max-w-40 truncate">
-                      <Link to="/smart-ad-reporting" className="hover:text-[#E4262C]">{r.campaign}</Link>
+                      <Link to="/ads" className="hover:text-primary">{r.campaign}</Link>
                     </td>
                     <td className="py-2 pr-3 text-muted-foreground">{r.platform}</td>
                     <td className="py-2 pr-3"><DataQualityBadge quality={r.data_quality} /></td>
@@ -297,12 +297,12 @@ export default function CampaignMargin() {
 
 function DataQualityBadge({ quality }) {
   const colors = {
-    'Complete': 'bg-emerald-500/10 text-success',
-    'Missing Calls': 'bg-red-500/10 text-critical',
-    'Missing Spend': 'bg-red-500/10 text-critical',
-    'Missing Buyer Feedback': 'bg-yellow-500/10 text-yellow-400',
-    'Missing Cash': 'bg-yellow-500/10 text-yellow-400',
-    'Incomplete': 'bg-orange-500/10 text-warning',
+    'Complete': 'bg-success/10 text-success',
+    'Missing Calls': 'bg-critical/10 text-critical',
+    'Missing Spend': 'bg-critical/10 text-critical',
+    'Missing Buyer Feedback': 'bg-warning/10 text-warning',
+    'Missing Cash': 'bg-warning/10 text-warning',
+    'Incomplete': 'bg-warning/10 text-warning',
   };
   return (
     <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${colors[quality] || colors['Incomplete']}`}>
@@ -313,13 +313,13 @@ function DataQualityBadge({ quality }) {
 
 function GatewayStatusBadge({ status, broken }) {
   if (broken) {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-critical">⚠ Tracking Broken</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-critical/10 text-critical">⚠ Tracking Broken</span>;
   }
   if (status === 'CAPI Missing') {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-warning">⚠ CAPI Missing</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-warning/10 text-warning">⚠ CAPI Missing</span>;
   }
   if (status === 'OK') {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-success">✓ OK</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-success/10 text-success">✓ OK</span>;
   }
-  return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-gray-500/10 text-gray-400">—</span>;
+  return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-muted/30 text-muted-foreground">—</span>;
 }

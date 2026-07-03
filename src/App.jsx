@@ -12,33 +12,39 @@ import Register from '@/pages/Register';
 import ForgotPassword from '@/pages/ForgotPassword';
 import ResetPassword from '@/pages/ResetPassword';
 import AppLayout from '@/components/layout/AppLayout';
-import CommandCenter from '@/pages/CommandCenter';
-import TodayActions from '@/pages/TodayActions';
-import ValidationStatus from '@/pages/ValidationStatus';
-import FinanceCommand from '@/pages/FinanceCommand';
+import SectionLayout from '@/components/layout/SectionLayout';
+
+// Section main pages
+import Overview from '@/pages/Overview';
+import FinanceMain from '@/pages/FinanceMain';
+import PerformanceMain from '@/pages/PerformanceMain';
+import AdIntelligenceMain from '@/pages/AdIntelligenceMain';
+import GatewayMain from '@/pages/GatewayMain';
+import DataSources from '@/pages/DataSources';
+import IncomeCheck from '@/pages/IncomeCheck';
+
+// Tab pages — Finances
 import CashBanking from '@/pages/CashBanking';
-import XeroPage from '@/pages/XeroPage';
-import Receivables from '@/pages/Receivables';
 import Payables from '@/pages/Payables';
 import SupplierLedger from '@/pages/SupplierLedger';
 import MediaGap from '@/pages/MediaGap';
 import Reconciliation from '@/pages/Reconciliation';
-import PerformanceDashboard from '@/pages/PerformanceDashboard';
+
+// Tab pages — Performance
 import LeadEconomics from '@/pages/LeadEconomics';
 import BuyerPerformance from '@/pages/BuyerPerformance';
 import SupplierPerformance from '@/pages/SupplierPerformance';
 import StatePerformance from '@/pages/StatePerformance';
 import CampaignMargin from '@/pages/CampaignMargin';
 import LeadQuality from '@/pages/LeadQuality';
-import ReportBuilder from '@/pages/ReportBuilder';
-import AdIntelligenceCommand from '@/pages/AdIntelligenceCommand';
-import SmartAdReporting from '@/pages/SmartAdReporting';
+
+// Tab pages — Ad Intelligence
 import CreativeIntelligence from '@/pages/CreativeIntelligence';
 import PlatformSpendReconciliation from '@/pages/PlatformSpendReconciliation';
 import AdToLeadQuality from '@/pages/AdToLeadQuality';
 import CutWatchScaleQueue from '@/pages/CutWatchScaleQueue';
-import CampaignMapping from '@/pages/CampaignMapping';
-import GatewayCommand from '@/pages/GatewayCommand';
+
+// Tab pages — Lead Gateway
 import LeadIntakeMonitor from '@/pages/LeadIntakeMonitor';
 import RoutingRules from '@/pages/RoutingRules';
 import BuyerDeliveryLogs from '@/pages/BuyerDeliveryLogs';
@@ -46,21 +52,20 @@ import SupplierFeedHealth from '@/pages/SupplierFeedHealth';
 import ComplianceConsent from '@/pages/ComplianceConsent';
 import CapiEventTracking from '@/pages/CapiEventTracking';
 import ErrorQueue from '@/pages/ErrorQueue';
-import GatewayReconciliation from '@/pages/GatewayReconciliation';
+
+// Tab pages — Data & System
 import DataImports from '@/pages/DataImports';
-import SourceConnections from '@/pages/SourceConnections';
-import ImportHistory from '@/pages/ImportHistory';
+import ValidationStatus from '@/pages/ValidationStatus';
 import SettingsPage from '@/pages/SettingsPage';
-import UsersRoles from '@/pages/UsersRoles';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center" style={{ background: 'hsl(214, 18%, 17%)' }}>
+      <div className="fixed inset-0 flex items-center justify-center bg-background">
         <div className="flex flex-col items-center gap-3">
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: 'hsl(358, 78%, 52%)' }}>
+          <div className="h-10 w-10 rounded-lg flex items-center justify-center bg-primary">
             <span className="text-white font-bold text-lg">L</span>
           </div>
           <div className="w-6 h-6 border-2 border-muted-foreground/30 border-t-primary rounded-full animate-spin" />
@@ -86,46 +91,55 @@ const AuthenticatedApp = () => {
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<CommandCenter />} />
-          <Route path="/today-actions" element={<TodayActions />} />
-          <Route path="/validation-status" element={<ValidationStatus />} />
-          <Route path="/finance-command" element={<FinanceCommand />} />
-          <Route path="/cash" element={<CashBanking />} />
-          <Route path="/xero" element={<XeroPage />} />
-          <Route path="/receivables" element={<Receivables />} />
-          <Route path="/payables" element={<Payables />} />
-          <Route path="/supplier-ledger" element={<SupplierLedger />} />
-          <Route path="/media-gap" element={<MediaGap />} />
-          <Route path="/performance-dashboard" element={<PerformanceDashboard />} />
-          <Route path="/lead-economics" element={<LeadEconomics />} />
-          <Route path="/buyer-performance" element={<BuyerPerformance />} />
-          <Route path="/supplier-performance" element={<SupplierPerformance />} />
-          <Route path="/state-performance" element={<StatePerformance />} />
-          <Route path="/campaign-margin" element={<CampaignMargin />} />
-          <Route path="/lead-quality" element={<LeadQuality />} />
-          <Route path="/report-builder" element={<ReportBuilder />} />
-          <Route path="/ad-intelligence-command" element={<AdIntelligenceCommand />} />
-          <Route path="/smart-ad-reporting" element={<SmartAdReporting />} />
-          <Route path="/creative-intelligence" element={<CreativeIntelligence />} />
-          <Route path="/platform-spend-recon" element={<PlatformSpendReconciliation />} />
-          <Route path="/ad-to-lead-quality" element={<AdToLeadQuality />} />
-          <Route path="/cut-watch-scale" element={<CutWatchScaleQueue />} />
-          <Route path="/campaign-mapping" element={<CampaignMapping />} />
-          <Route path="/gateway/command" element={<GatewayCommand />} />
-          <Route path="/gateway/lead-intake" element={<LeadIntakeMonitor />} />
-          <Route path="/gateway/routing-rules" element={<RoutingRules />} />
-          <Route path="/gateway/buyer-delivery" element={<BuyerDeliveryLogs />} />
-          <Route path="/gateway/supplier-feeds" element={<SupplierFeedHealth />} />
-          <Route path="/gateway/compliance" element={<ComplianceConsent />} />
-          <Route path="/gateway/capi-events" element={<CapiEventTracking />} />
-          <Route path="/gateway/error-queue" element={<ErrorQueue />} />
-          <Route path="/gateway/reconciliation" element={<GatewayReconciliation />} />
-          <Route path="/reconciliation" element={<Reconciliation />} />
-          <Route path="/imports" element={<DataImports />} />
-          <Route path="/source-connections" element={<SourceConnections />} />
-          <Route path="/import-history" element={<ImportHistory />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="/users-roles" element={<UsersRoles />} />
+          <Route path="/overview" element={<Overview />} />
+
+          <Route path="/finances" element={<SectionLayout sectionKey="finances" />}>
+            <Route index element={<FinanceMain />} />
+            <Route path="cash-banking" element={<CashBanking />} />
+            <Route path="income-check" element={<IncomeCheck />} />
+            <Route path="payables" element={<Payables />} />
+            <Route path="supplier-ledger" element={<SupplierLedger />} />
+            <Route path="media-gap" element={<MediaGap />} />
+            <Route path="reconciliation" element={<Reconciliation />} />
+          </Route>
+
+          <Route path="/performance" element={<SectionLayout sectionKey="performance" />}>
+            <Route index element={<PerformanceMain />} />
+            <Route path="leads" element={<LeadEconomics />} />
+            <Route path="buyers" element={<BuyerPerformance />} />
+            <Route path="suppliers" element={<SupplierPerformance />} />
+            <Route path="states" element={<StatePerformance />} />
+            <Route path="campaigns" element={<CampaignMargin />} />
+            <Route path="lead-quality" element={<LeadQuality />} />
+          </Route>
+
+          <Route path="/ads" element={<SectionLayout sectionKey="ads" />}>
+            <Route index element={<AdIntelligenceMain />} />
+            <Route path="creative-insights" element={<CreativeIntelligence />} />
+            <Route path="spend-reconciliation" element={<PlatformSpendReconciliation />} />
+            <Route path="ad-to-lead-quality" element={<AdToLeadQuality />} />
+            <Route path="cut-watch-scale" element={<CutWatchScaleQueue />} />
+          </Route>
+
+          <Route path="/gateway" element={<SectionLayout sectionKey="gateway" />}>
+            <Route index element={<GatewayMain />} />
+            <Route path="intake" element={<LeadIntakeMonitor />} />
+            <Route path="routing" element={<RoutingRules />} />
+            <Route path="delivery" element={<BuyerDeliveryLogs />} />
+            <Route path="supplier-feeds" element={<SupplierFeedHealth />} />
+            <Route path="compliance" element={<ComplianceConsent />} />
+            <Route path="capi" element={<CapiEventTracking />} />
+            <Route path="errors" element={<ErrorQueue />} />
+          </Route>
+
+          <Route path="/system" element={<SectionLayout sectionKey="system" />}>
+            <Route index element={<DataSources />} />
+            <Route path="imports" element={<DataImports />} />
+            <Route path="validation" element={<ValidationStatus />} />
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
+
+          <Route path="/" element={<Navigate to="/overview" replace />} />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />

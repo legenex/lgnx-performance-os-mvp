@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SectionPanel({ title, subtitle, children, actions, className = '' }) {
   return (
-    <div className={`rounded-xl border border-border ${className}`} style={{ background: 'hsl(213, 17%, 20%)' }}>
+    <div className={`bg-card border border-border rounded-[10px] ${className}`}>
       {(title || actions) && (
         <div className="flex items-center justify-between px-5 py-3 border-b border-border">
           <div>
