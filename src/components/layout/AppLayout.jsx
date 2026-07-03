@@ -126,13 +126,17 @@ export default function AppLayout() {
           {NAV_GROUPS.map((group) => {
             const isCollapsed = collapsedGroups[group.label];
             const GroupIcon = group.icon;
+            const groupActive = group.items.some(i => isActive(i.path));
             return (
               <div key={group.label} className="mb-0.5">
                 <button
                   onClick={() => toggleGroup(group.label)}
-                  className="flex items-center gap-2 w-full px-3 py-2 mx-2 rounded-md text-xs font-medium transition-colors hover:bg-white/5"
-                  style={{ color: '#ffffff' }}
+                  className="flex items-center gap-2 w-full px-3 py-2 mx-2 rounded-md text-xs font-medium transition-colors relative"
+                  style={groupActive ? { background: '#3a2529', color: '#ffffff' } : { color: '#ffffff' }}
+                  onMouseEnter={e => { if (!groupActive) e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onMouseLeave={e => { if (!groupActive) e.currentTarget.style.background = 'transparent'; }}
                 >
+                  {groupActive && <div className="absolute left-0 top-0 bottom-0 w-[2px] rounded-r" style={{ background: '#ff4d4f' }} />}
                   <GroupIcon className="w-4 h-4 flex-shrink-0" />
                   <span className="truncate flex-1 text-left">{group.label}</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform flex-shrink-0 ${isCollapsed ? '' : 'rotate-180'}`} />
