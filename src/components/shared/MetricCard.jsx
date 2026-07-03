@@ -8,7 +8,7 @@ export default function MetricCard({ title, value, label, icon: Icon, sublabel, 
   return (
     <div 
       className={`rounded-lg border border-border p-4 ${onClick ? 'cursor-pointer hover:border-[#E4262C]/30 transition-colors' : ''} ${className}`}
-      style={{ background: '#1c2128' }}
+      style={{ background: 'hsl(213, 17%, 20%)' }}
       onClick={onClick}
     >
       <div className="flex items-start justify-between mb-2">

@@ -101,19 +101,19 @@ export default function CutWatchScaleQueue() {
         <div className="rounded-lg border border-red-500/20 p-4" style={{ background: '#14171C' }}>
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Cut</span>
-            <span className="text-2xl font-bold text-red-400 tabular-nums">{cutCount}</span>
+            <span className="text-2xl font-bold text-critical tabular-nums">{cutCount}</span>
           </div>
         </div>
         <div className="rounded-lg border border-yellow-500/20 p-4" style={{ background: '#14171C' }}>
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Watch</span>
-            <span className="text-2xl font-bold text-yellow-400 tabular-nums">{watchCount}</span>
+            <span className="text-2xl font-bold text-warning tabular-nums">{watchCount}</span>
           </div>
         </div>
         <div className="rounded-lg border border-emerald-500/20 p-4" style={{ background: '#14171C' }}>
           <div className="flex items-center justify-between">
             <span className="text-[10px] uppercase tracking-wider text-muted-foreground">To Scale</span>
-            <span className="text-2xl font-bold text-emerald-400 tabular-nums">{scaleCount}</span>
+            <span className="text-2xl font-bold text-success tabular-nums">{scaleCount}</span>
           </div>
         </div>
       </div>
@@ -205,7 +205,7 @@ export default function CutWatchScaleQueue() {
       <SectionPanel title="Decision Rules" subtitle="Automatic SCALE / WATCH / CUT logic">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
           <div className="p-3 rounded border border-emerald-500/20" style={{ background: '#1A1E24' }}>
-            <p className="font-semibold text-emerald-400 mb-1">SCALE when</p>
+            <p className="font-semibold text-success mb-1">SCALE when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Positive true gross margin</li>
               <li>• Positive or improving cash margin</li>
@@ -215,7 +215,7 @@ export default function CutWatchScaleQueue() {
             </ul>
           </div>
           <div className="p-3 rounded border border-yellow-500/20" style={{ background: '#1A1E24' }}>
-            <p className="font-semibold text-yellow-400 mb-1">WATCH when</p>
+            <p className="font-semibold text-warning mb-1">WATCH when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Booked margin positive but cash unclear</li>
               <li>• Calls missing</li>
@@ -225,7 +225,7 @@ export default function CutWatchScaleQueue() {
             </ul>
           </div>
           <div className="p-3 rounded border border-red-500/20" style={{ background: '#1A1E24' }}>
-            <p className="font-semibold text-red-400 mb-1">CUT when</p>
+            <p className="font-semibold text-critical mb-1">CUT when</p>
             <ul className="text-muted-foreground space-y-0.5 text-[11px]">
               <li>• Negative true margin after enough spend</li>
               <li>• High DQ / fake / return rate</li>

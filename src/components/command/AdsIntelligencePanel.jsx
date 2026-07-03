@@ -58,12 +58,12 @@ export default function AdsIntelligencePanel() {
     finally { setLoading(false); }
   }
 
-  if (loading) return <div className="rounded-lg border border-border p-4 animate-pulse" style={{ background: '#1c2128', height: '200px' }} />;
+  if (loading) return <div className="rounded-lg border border-border p-4 animate-pulse" style={{ background: 'hsl(213, 17%, 20%)', height: '200px' }} />;
 
   if (!data) return null;
 
   return (
-    <div className="rounded-lg border border-border p-4" style={{ background: '#1c2128' }}>
+    <div className="rounded-lg border border-border p-4" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Ads Intelligence</h3>
         <Link to="/smart-ad-reporting" className="text-[10px] text-[#E4262C] hover:underline">View all →</Link>

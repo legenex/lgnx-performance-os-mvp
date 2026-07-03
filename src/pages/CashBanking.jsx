@@ -96,14 +96,14 @@ export default function CashBanking() {
         {accounts.map((a, i) => (
           <MetricCard key={i} title={a.account_name} value={a.current_balance} label="CASH" sublabel={`${a.institution} · ${a.account_type || 'Checking'}`} />
         ))}
-        <MetricCard title="Total Cash" value={totalCash} label="CASH" className="border-[#E4262C]/20" />
+        <MetricCard title="Total Cash" value={totalCash} label="CASH" className="border-primary/20" />
       </div>
 
       {/* Uncategorized counter */}
       {uncategorized > 0 && (
-        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-orange-500/10 border border-orange-500/20">
-          <Tag className="w-4 h-4 text-orange-400" />
-          <span className="text-xs text-orange-300">{uncategorized} uncategorized transactions require attention</span>
+        <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-warning/10 border border-warning/20">
+          <Tag className="w-4 h-4 text-warning" />
+          <span className="text-xs text-warning">{uncategorized} uncategorized transactions require attention</span>
         </div>
       )}
 

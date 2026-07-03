@@ -119,9 +119,9 @@ export default function PlatformSpendReconciliation() {
       <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
         <Card title="Platform Reported" value={formatMoney(totalReported)} pill="BOOKED" />
         <Card title="Bank/Xero Paid" value={formatMoney(totalPaid)} pill="CASH" />
-        <Card title="Unexplained Gap" value={formatMoney(totalGap)} color={Math.abs(totalGap) > 2000 ? 'text-red-400' : 'text-muted-foreground'} />
+        <Card title="Unexplained Gap" value={formatMoney(totalGap)} color={Math.abs(totalGap) > 2000 ? 'text-critical' : 'text-muted-foreground'} />
         <Card title="LeadFlow Payments" value={formatMoney(reconData.reduce((s, r) => s + r.leadflow_paid, 0))} pill="CASH" />
-        <Card title="Critical Gaps" value={reconData.filter(r => r.status === 'Critical').length} color="text-red-400" />
+        <Card title="Critical Gaps" value={reconData.filter(r => r.status === 'Critical').length} color="text-critical" />
       </div>
 
       {/* Alerts */}
@@ -129,7 +129,7 @@ export default function PlatformSpendReconciliation() {
         <div className="space-y-1.5">
           {adAlerts.map((a, i) => (
             <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-red-500/10 border border-red-500/20">
-              <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
               <div className="flex-1">
                 <p className="text-xs text-foreground">{a.message}</p>
                 {a.recommended_action && <p className="text-[11px] text-muted-foreground mt-0.5">→ {a.recommended_action}</p>}
@@ -171,7 +171,7 @@ export default function PlatformSpendReconciliation() {
                   <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(r.xero_paid)}</td>
                   <td className="py-2 pr-3 text-right tabular-nums text-blue-400">{formatMoney(r.leadflow_paid)}</td>
                   <td className="py-2 pr-3 text-right tabular-nums font-medium">{formatMoney(r.totalPaid)}</td>
-                  <td className={`py-2 pr-3 text-right tabular-nums font-bold ${Math.abs(r.gap) > 2000 ? 'text-red-400' : r.gap > 500 ? 'text-yellow-400' : 'text-emerald-400'}`}>
+                  <td className={`py-2 pr-3 text-right tabular-nums font-bold ${Math.abs(r.gap) > 2000 ? 'text-critical' : r.gap > 500 ? 'text-yellow-400' : 'text-success'}`}>
                     {formatMoney(r.gap)}
                   </td>
                   <td className="py-2 pr-3">

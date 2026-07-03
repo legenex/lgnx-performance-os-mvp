@@ -39,7 +39,7 @@ export default function CreativeIntelligence() {
       {/* Section Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Winners */}
-        <SectionPanel title="Winning Hooks & Creatives" subtitle={`${winners.length} winners`} actions={<Sparkles className="w-4 h-4 text-emerald-400" />}>
+        <SectionPanel title="Winning Hooks & Creatives" subtitle={`${winners.length} winners`} actions={<Sparkles className="w-4 h-4 text-success" />}>
           {winners.length === 0 ? <Empty msg="No winners yet" /> : (
             <div className="space-y-2">
               {winners.map((c, i) => (
@@ -102,7 +102,7 @@ export default function CreativeIntelligence() {
       {/* Compliance Risk */}
       {complianceRisk.length > 0 && (
         <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-          <Shield className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+          <Shield className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-xs text-red-300 font-medium">{complianceRisk.length} creatives with compliance or quality risk</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">High DQ rate or Kill verdict — review landing page and ad claims for compliance.</p>
@@ -147,15 +147,15 @@ export default function CreativeIntelligence() {
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatPercent(c.ctr * 100)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(c.cpl)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{c.leads}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-emerald-400">{c.sold_leads}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-red-400">{formatPercent(c.dq_rate * 100)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-success">{c.sold_leads}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-critical">{formatPercent(c.dq_rate * 100)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatPercent(c.return_rate * 100)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums">{c.call_revenue > 0 ? formatMoney(c.call_revenue) : <span className="text-red-400/50">—</span>}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">{c.call_revenue > 0 ? formatMoney(c.call_revenue) : <span className="text-critical/50">—</span>}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(c.revenue)}</td>
                   <td className={`py-1.5 pr-2 text-right tabular-nums font-bold ${moneyColor(c.margin)}`}>{formatMoney(c.margin)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{c.quality_score.toFixed(1)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">
-                    <span className={c.fatigue_score > 7 ? 'text-red-400' : c.fatigue_score > 4 ? 'text-yellow-400' : 'text-emerald-400'}>
+                    <span className={c.fatigue_score > 7 ? 'text-critical' : c.fatigue_score > 4 ? 'text-yellow-400' : 'text-success'}>
                       {c.fatigue_score.toFixed(1)}
                     </span>
                   </td>

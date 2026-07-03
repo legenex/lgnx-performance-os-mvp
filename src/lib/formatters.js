@@ -1,13 +1,9 @@
-// Financial formatting utilities for PerformanceOS
-
 export function formatMoney(value, opts = {}) {
-  const { showSign = false, label = null, compact = false } = opts;
+  const { showSign = false, compact = false } = opts;
   if (value === null || value === undefined || isNaN(value)) return '—';
-  
   const num = Number(value);
   const isNeg = num < 0;
   const abs = Math.abs(num);
-  
   let formatted;
   if (compact && abs >= 1000000) {
     formatted = `$${(abs / 1000000).toFixed(1)}M`;
@@ -16,31 +12,22 @@ export function formatMoney(value, opts = {}) {
   } else {
     formatted = `$${abs.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
   }
-  
-  if (isNeg) {
-    formatted = `(${formatted})`;
-  } else if (showSign && num > 0) {
-    formatted = `+${formatted}`;
-  }
-  
-  if (label) {
-    formatted = `${formatted}`;
-  }
-  
+  if (isNeg) formatted = `(${formatted})`;
+  else if (showSign && num > 0) formatted = `+${formatted}`;
   return formatted;
 }
 
 export function moneyColor(value) {
   if (value === null || value === undefined) return 'text-muted-foreground';
   const num = Number(value);
-  if (num < 0) return 'text-red-400';
+  if (num < 0) return 'text-critical';
   if (num === 0) return 'text-muted-foreground';
-  return 'text-emerald-400';
+  return 'text-success';
 }
 
 export function negativeColor(value) {
   if (value === null || value === undefined) return '';
-  return Number(value) < 0 ? 'text-red-400' : '';
+  return Number(value) < 0 ? 'text-critical' : '';
 }
 
 export function formatPercent(value, decimals = 1) {
@@ -59,33 +46,44 @@ export function cashLabel(type) {
 
 export function getStatusColor(status) {
   const colors = {
-    'Critical': 'bg-red-500/20 text-red-400 border-red-500/30',
-    'High': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
-    'Medium': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    'Low': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-    'Open': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    'Resolved': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-    'Ignored': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
-    'STAR': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-    'OK': 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-    'REVIEW TERMS': 'bg-orange-500/20 text-orange-400 border-orange-500/30',
-    'PAUSE': 'bg-red-500/20 text-red-400 border-red-500/30',
-    'SCALE': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-    'WATCH': 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    'CUT': 'bg-red-500/20 text-red-400 border-red-500/30',
-    'UNKNOWN': 'bg-gray-500/20 text-gray-400 border-gray-500/30',
-    'Active': 'bg-emerald-500/20 text-emerald-400',
-    'Paused': 'bg-yellow-500/20 text-yellow-400',
-    'Lost': 'bg-red-500/20 text-red-400',
-    'Review': 'bg-orange-500/20 text-orange-400',
-    'Paid': 'bg-emerald-500/20 text-emerald-400',
-    'Overdue': 'bg-red-500/20 text-red-400',
-    'Sent': 'bg-blue-500/20 text-blue-400',
-    'Draft': 'bg-gray-500/20 text-gray-400',
-    'Connected': 'bg-emerald-500/20 text-emerald-400',
-    'Not Connected': 'bg-gray-500/20 text-gray-400',
-    'Error': 'bg-red-500/20 text-red-400',
-    'Expired': 'bg-orange-500/20 text-orange-400',
+    'Critical': 'bg-critical/15 text-critical border-critical/30',
+    'High': 'bg-warning/15 text-warning border-warning/30',
+    'Medium': 'bg-warning/15 text-warning border-warning/30',
+    'Low': 'bg-info/15 text-info border-info/30',
+    'Open': 'bg-warning/15 text-warning border-warning/30',
+    'Resolved': 'bg-success/15 text-success border-success/30',
+    'Ignored': 'bg-muted/30 text-muted-foreground border-border',
+    'STAR': 'bg-success/15 text-success border-success/30',
+    'OK': 'bg-info/15 text-info border-info/30',
+    'REVIEW TERMS': 'bg-warning/15 text-warning border-warning/30',
+    'PAUSE': 'bg-critical/15 text-critical border-critical/30',
+    'SCALE': 'bg-success/15 text-success border-success/30',
+    'WATCH': 'bg-warning/15 text-warning border-warning/30',
+    'CUT': 'bg-critical/15 text-critical border-critical/30',
+    'HOLD': 'bg-info/15 text-info border-info/30',
+    'UNKNOWN': 'bg-muted/30 text-muted-foreground border-border',
+    'Active': 'bg-success/15 text-success',
+    'Paused': 'bg-warning/15 text-warning',
+    'Lost': 'bg-critical/15 text-critical',
+    'Review': 'bg-warning/15 text-warning',
+    'Paid': 'bg-success/15 text-success',
+    'Overdue': 'bg-critical/15 text-critical',
+    'Sent': 'bg-info/15 text-info',
+    'Draft': 'bg-muted/30 text-muted-foreground',
+    'Connected': 'bg-success/15 text-success',
+    'Not Connected': 'bg-muted/30 text-muted-foreground',
+    'Error': 'bg-critical/15 text-critical',
+    'Expired': 'bg-warning/15 text-warning',
+    'Healthy': 'bg-success/15 text-success',
+    'Watch': 'bg-warning/15 text-warning',
+    'Passed': 'bg-success/15 text-success',
+    'Failed': 'bg-critical/15 text-critical',
+    'Warning': 'bg-warning/15 text-warning',
+    'Success': 'bg-success/15 text-success',
+    'Timeout': 'bg-critical/15 text-critical',
+    'Rejected': 'bg-critical/15 text-critical',
+    'Sold': 'bg-success/15 text-success',
+    'Unsold': 'bg-muted/30 text-muted-foreground',
   };
-  return colors[status] || 'bg-gray-500/20 text-gray-400';
+  return colors[status] || 'bg-muted/30 text-muted-foreground border-border';
 }

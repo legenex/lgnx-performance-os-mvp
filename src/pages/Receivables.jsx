@@ -82,7 +82,7 @@ export default function Receivables() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm font-semibold">{topDebtor[0]}</p>
-              <p className="text-xs text-muted-foreground">Outstanding: <span className="text-red-400 font-medium">{formatMoney(topDebtor[1].outstanding)}</span></p>
+              <p className="text-xs text-muted-foreground">Outstanding: <span className="text-critical font-medium">{formatMoney(topDebtor[1].outstanding)}</span></p>
             </div>
             <Button size="sm" className="text-xs gap-1 bg-[#E4262C] hover:bg-[#E4262C]/80">
               <PhoneCall className="w-3.5 h-3.5" /> Chase
@@ -98,7 +98,7 @@ export default function Receivables() {
             <tr className="text-left text-muted-foreground border-b border-border">
               <th className="pb-2 pr-3">Buyer</th>
               <th className="pb-2 pr-3 text-right">Booked <span className="text-[9px] text-blue-400">BOOKED</span></th>
-              <th className="pb-2 pr-3 text-right">Collected <span className="text-[9px] text-emerald-400">CASH</span></th>
+              <th className="pb-2 pr-3 text-right">Collected <span className="text-[9px] text-success">CASH</span></th>
               <th className="pb-2 pr-3 text-right">Outstanding</th>
               <th className="pb-2 pr-3 text-right">Current</th>
               <th className="pb-2 pr-3 text-right">1-30d</th>
@@ -111,12 +111,12 @@ export default function Receivables() {
               <tr key={i} className="border-b border-border/30">
                 <td className="py-2 pr-3 font-medium">{buyer}</td>
                 <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(data.booked)}</td>
-                <td className="py-2 pr-3 text-right tabular-nums text-emerald-400">{formatMoney(data.collected)}</td>
-                <td className={`py-2 pr-3 text-right tabular-nums font-medium ${data.outstanding > 0 ? 'text-red-400' : ''}`}>{formatMoney(data.outstanding)}</td>
+                <td className="py-2 pr-3 text-right tabular-nums text-success">{formatMoney(data.collected)}</td>
+                <td className={`py-2 pr-3 text-right tabular-nums font-medium ${data.outstanding > 0 ? 'text-critical' : ''}`}>{formatMoney(data.outstanding)}</td>
                 <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(data.current)}</td>
                 <td className="py-2 pr-3 text-right tabular-nums text-yellow-400">{data.d30 > 0 ? formatMoney(data.d30) : '—'}</td>
                 <td className="py-2 pr-3 text-right tabular-nums text-orange-400">{data.d60 > 0 ? formatMoney(data.d60) : '—'}</td>
-                <td className="py-2 text-right tabular-nums text-red-400">{data.d60plus > 0 ? formatMoney(data.d60plus) : '—'}</td>
+                <td className="py-2 text-right tabular-nums text-critical">{data.d60plus > 0 ? formatMoney(data.d60plus) : '—'}</td>
               </tr>
             ))}
           </tbody>
@@ -149,7 +149,7 @@ export default function Receivables() {
                 <td className="py-2 pr-3"><StatusBadge status={inv.status} /></td>
                 <td className="py-2 pr-3 tabular-nums text-muted-foreground">{inv.due_date}</td>
                 <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(inv.booked_amount)}</td>
-                <td className="py-2 pr-3 text-right tabular-nums text-emerald-400">{formatMoney(inv.collected_amount)}</td>
+                <td className="py-2 pr-3 text-right tabular-nums text-success">{formatMoney(inv.collected_amount)}</td>
                 <td className={`py-2 text-right tabular-nums font-medium ${moneyColor(-(inv.outstanding_amount || 0))}`}>
                   {formatMoney(inv.outstanding_amount)}
                 </td>

@@ -183,7 +183,7 @@ export default function CampaignMargin() {
 
       {!hasCallData && (
         <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-          <AlertTriangle className="w-4 h-4 text-red-400" />
+          <AlertTriangle className="w-4 h-4 text-critical" />
           <span className="text-xs text-red-300 font-medium">Call revenue missing. Campaign margin may be understated. Import call data from Ringba/TrueCall/Walker.</span>
         </div>
       )}
@@ -192,7 +192,7 @@ export default function CampaignMargin() {
 
       {trackingBroken.length > 0 && (
         <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-          <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+          <AlertTriangle className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-xs text-red-300 font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{trackingBroken.slice(0, 3).join(', ')}</p>
@@ -233,13 +233,13 @@ export default function CampaignMargin() {
                     </td>
                     <td className="py-2 pr-3 text-muted-foreground">{r.platform}</td>
                     <td className="py-2 pr-3"><DataQualityBadge quality={r.data_quality} /></td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-orange-400">{formatMoney(r.spend_tracked)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-warning">{formatMoney(r.spend_tracked)}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(r.spend_paid)}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(r.web_lead_revenue)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums">{r.has_calls ? formatMoney(r.call_revenue) : <span className="text-red-400/50">MISSING</span>}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums">{r.has_calls ? formatMoney(r.call_revenue) : <span className="text-critical/50">MISSING</span>}</td>
                     <td className="py-2 pr-3 text-right tabular-nums font-medium">{formatMoney(r.total_booked_revenue)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums">{r.has_cash ? formatMoney(r.buyer_collected_cash) : <span className="text-red-400/50">?</span>}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-orange-400">{formatMoney(r.supplier_payout_accrued)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums">{r.has_cash ? formatMoney(r.buyer_collected_cash) : <span className="text-critical/50">?</span>}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-warning">{formatMoney(r.supplier_payout_accrued)}</td>
                     <td className={`py-2 pr-3 text-right tabular-nums font-bold ${moneyColor(r.true_margin)}`}>{formatMoney(r.true_margin)}</td>
                     <td className={`py-2 pr-3 text-right tabular-nums font-bold ${r.cash_margin !== null ? moneyColor(r.cash_margin) : 'text-muted-foreground/40'}`}>{r.cash_margin !== null ? formatMoney(r.cash_margin) : '?'}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{r.booked_roas > 0 ? `${r.booked_roas.toFixed(2)}x` : '—'}</td>
@@ -276,11 +276,11 @@ export default function CampaignMargin() {
                   <tr key={i} className="border-b border-border/30 hover:bg-white/5">
                     <td className="py-2 pr-3 font-medium max-w-48 truncate">{r.campaign}</td>
                     <td className="py-2 pr-3 text-muted-foreground">{r.platform}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-orange-400">{formatMoney(r.spend)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-warning">{formatMoney(r.spend)}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(r.webRevenue)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums">{r.callRevenue > 0 ? formatMoney(r.callRevenue) : <span className="text-red-400/50">—</span>}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums">{r.callRevenue > 0 ? formatMoney(r.callRevenue) : <span className="text-critical/50">—</span>}</td>
                     <td className="py-2 pr-3 text-right tabular-nums font-medium">{formatMoney(r.totalRevenue)}</td>
-                    <td className="py-2 pr-3 text-right tabular-nums text-orange-400">{formatMoney(r.supplierPayout)}</td>
+                    <td className="py-2 pr-3 text-right tabular-nums text-warning">{formatMoney(r.supplierPayout)}</td>
                     <td className={`py-2 pr-3 text-right tabular-nums font-bold ${moneyColor(r.trueMargin)}`}>{formatMoney(r.trueMargin)}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{r.roas > 0 ? `${r.roas.toFixed(2)}x` : '—'}</td>
                     <td className="py-2"><StatusBadge status={r.status} /></td>
@@ -297,12 +297,12 @@ export default function CampaignMargin() {
 
 function DataQualityBadge({ quality }) {
   const colors = {
-    'Complete': 'bg-emerald-500/10 text-emerald-400',
-    'Missing Calls': 'bg-red-500/10 text-red-400',
-    'Missing Spend': 'bg-red-500/10 text-red-400',
+    'Complete': 'bg-emerald-500/10 text-success',
+    'Missing Calls': 'bg-red-500/10 text-critical',
+    'Missing Spend': 'bg-red-500/10 text-critical',
     'Missing Buyer Feedback': 'bg-yellow-500/10 text-yellow-400',
     'Missing Cash': 'bg-yellow-500/10 text-yellow-400',
-    'Incomplete': 'bg-orange-500/10 text-orange-400',
+    'Incomplete': 'bg-orange-500/10 text-warning',
   };
   return (
     <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${colors[quality] || colors['Incomplete']}`}>
@@ -313,13 +313,13 @@ function DataQualityBadge({ quality }) {
 
 function GatewayStatusBadge({ status, broken }) {
   if (broken) {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-red-400">⚠ Tracking Broken</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-critical">⚠ Tracking Broken</span>;
   }
   if (status === 'CAPI Missing') {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-orange-400">⚠ CAPI Missing</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-warning">⚠ CAPI Missing</span>;
   }
   if (status === 'OK') {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-emerald-400">✓ OK</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-success">✓ OK</span>;
   }
   return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-gray-500/10 text-gray-400">—</span>;
 }

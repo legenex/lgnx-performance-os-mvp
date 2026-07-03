@@ -99,7 +99,7 @@ export default function DataImports() {
           const lastBatch = batches.find(b => b.source === imp.label);
           const isImporting = importing === imp.key;
           return (
-            <div key={imp.key} className="rounded-lg border border-border p-4" style={{ background: '#14171C' }}>
+            <div key={imp.key} className="rounded-lg border border-border p-4" style={{ background: 'hsl(213, 17%, 20%)' }}>
               <div className="flex items-start justify-between mb-2">
                 <span className="text-lg">{imp.icon}</span>
                 {lastBatch && <Check className="w-3.5 h-3.5 text-emerald-400" />}
@@ -181,19 +181,19 @@ export default function DataImports() {
       {/* Gateway Import Pipeline */}
       <SectionPanel title="Gateway Import Pipeline" subtitle="Lead ingestion, validation, routing, and delivery import">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-muted-foreground">
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">Gateway Lead Payload</p>
             <p>JSON or CSV with raw inbound lead data. Auto-maps to GatewayLead fields, validates, and creates compliance records.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">LeadByte Status Export</p>
             <p>Updates GatewayLead lead_status from LeadByte delivery results. Dedupes by leadbyte_id.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">CAPI/Event Tracking Logs</p>
             <p>Imports Meta CAPI, Google Ads, GA4, Taboola event logs. Dedupes by dedupe_key.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">TrustedForm/Jornaya Export</p>
             <p>Compliance evidence import. Matches by gateway_lead_id and updates compliance records.</p>
           </div>
@@ -203,19 +203,19 @@ export default function DataImports() {
       {/* Ad Import Pipeline */}
       <SectionPanel title="Ad Import Pipeline" subtitle="Column mapping, preview, validation, failed row report">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-muted-foreground">
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">Column Mapping</p>
             <p>Auto-detect standard columns (date, campaign, spend, clicks, leads). Map custom columns via the settings page naming rules.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">Preview & Validation</p>
             <p>First 5 rows shown before commit. Invalid rows (missing date/platform/campaign) flagged and skipped.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">Deduplication</p>
             <p>By platform + date + campaign_id/adset_id/ad_id. Existing records updated, not duplicated.</p>
           </div>
-          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+          <div className="p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
             <p className="font-medium text-foreground mb-1">Failed Row Report</p>
             <p>Failed rows logged in ImportBatch with reason. Download rejected rows as CSV from import history.</p>
           </div>

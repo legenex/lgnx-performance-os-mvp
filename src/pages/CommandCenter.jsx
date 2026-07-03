@@ -120,15 +120,15 @@ export default function CommandCenter() {
 
       {/* Monday Number Hero */}
       <div 
-        className="rounded-lg border border-border p-6 cursor-pointer hover:border-[#ef4444]/30 transition-colors"
-        style={{ background: 'linear-gradient(135deg, #1c2128 0%, #22272e 100%)' }}
+        className="rounded-lg border border-border p-6 cursor-pointer hover:border-[hsl(358, 78%, 52%)]/30 transition-colors"
+        style={{ background: 'linear-gradient(135deg, hsl(213, 17%, 20%) 0%, hsl(214, 18%, 23%) 100%)' }}
         onClick={() => setShowDecomp(true)}
       >
         <div className="flex items-center justify-between">
           <div>
             <div className="flex items-center gap-2 mb-1">
               <span className="text-[11px] uppercase tracking-widest text-muted-foreground font-medium">Monday Number</span>
-              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-medium uppercase">Cash</span>
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-success font-medium uppercase">Cash</span>
             </div>
             <div className={`text-4xl font-bold tabular-nums ${moneyColor(metrics.mondayNumber)}`}>
               {formatMoney(metrics.mondayNumber)}
@@ -140,11 +140,11 @@ export default function CommandCenter() {
           <div className="text-right">
             <div className="flex items-center gap-1.5 mb-1">
               <span className="text-xs text-muted-foreground">Runway</span>
-              <span className={`text-lg font-bold tabular-nums ${metrics.runway < 4 ? 'text-red-400' : metrics.runway < 8 ? 'text-yellow-400' : 'text-emerald-400'}`}>
+              <span className={`text-lg font-bold tabular-nums ${metrics.runway < 4 ? 'text-critical' : metrics.runway < 8 ? 'text-warning' : 'text-success'}`}>
                 {metrics.runway} wks
               </span>
             </div>
-            {metrics.runway < 4 && <AlertTriangle className="w-5 h-5 text-red-400 ml-auto animate-pulse" />}
+            {metrics.runway < 4 && <AlertTriangle className="w-5 h-5 text-critical ml-auto animate-pulse" />}
             <p className="text-[10px] text-muted-foreground mt-1">Click to decompose →</p>
           </div>
         </div>

@@ -105,20 +105,20 @@ export default function SupplierFeedHealth() {
                   <td className="py-2 pr-2"><FeedStatusBadge status={s.status} /></td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatNumber(s.totalReceived)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatNumber(s.posted_count || 0)}</td>
-                  <td className="py-2 pr-2 text-right tabular-nums text-emerald-400">{formatNumber(s.totalSold)}</td>
+                  <td className="py-2 pr-2 text-right tabular-nums text-success">{formatNumber(s.totalSold)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums text-orange-400">{formatNumber(s.dq_count || 0)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums text-yellow-400">{formatNumber(s.returned_count || 0)}</td>
-                  <td className="py-2 pr-2 text-right tabular-nums text-red-400">{formatNumber(s.fake_count || 0)}</td>
+                  <td className="py-2 pr-2 text-right tabular-nums text-critical">{formatNumber(s.fake_count || 0)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatPercent(s.sell_through_rate * 100)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatPercent(s.dq_rate * 100)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatPercent(s.return_rate * 100)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums font-medium">{s.quality_score?.toFixed(1) || '—'}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{formatMoney(s.totalRev)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums text-orange-400">{formatMoney(s.totalPayout)}</td>
-                  <td className={`py-2 pr-2 text-right tabular-nums font-medium ${s.totalMargin < 0 ? 'text-red-400' : 'text-emerald-400'}`}>{formatMoney(s.totalMargin)}</td>
-                  <td className={`py-2 pr-2 text-right tabular-nums ${s.apBalance > 5000 ? 'text-red-400 font-bold' : 'text-muted-foreground'}`}>{formatMoney(s.apBalance)}</td>
+                  <td className={`py-2 pr-2 text-right tabular-nums font-medium ${s.totalMargin < 0 ? 'text-critical' : 'text-success'}`}>{formatMoney(s.totalMargin)}</td>
+                  <td className={`py-2 pr-2 text-right tabular-nums ${s.apBalance > 5000 ? 'text-critical font-bold' : 'text-muted-foreground'}`}>{formatMoney(s.apBalance)}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{s.avg_response_time_ms || 0}ms</td>
-                  <td className="py-2 pr-2 text-right tabular-nums text-red-400">{s.error_count || 0}</td>
+                  <td className="py-2 pr-2 text-right tabular-nums text-critical">{s.error_count || 0}</td>
                 </tr>
               ))}
             </tbody>
@@ -155,9 +155,9 @@ export default function SupplierFeedHealth() {
 
 function FeedStatusBadge({ status }) {
   const colors = {
-    'Healthy': 'bg-emerald-500/20 text-emerald-400',
+    'Healthy': 'bg-emerald-500/20 text-success',
     'Watch': 'bg-yellow-500/20 text-yellow-400',
-    'Critical': 'bg-red-500/20 text-red-400',
+    'Critical': 'bg-red-500/20 text-critical',
     'Paused': 'bg-gray-500/20 text-gray-400',
     'Unknown': 'bg-gray-500/20 text-gray-400',
   };

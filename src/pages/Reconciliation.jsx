@@ -59,9 +59,9 @@ export default function Reconciliation() {
             <div key={type} className="rounded-lg border border-border p-3" style={{ background: '#14171C' }}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[11px] text-muted-foreground">{type}</span>
-                {count > 0 ? <AlertTriangle className="w-3 h-3 text-yellow-400" /> : <Check className="w-3 h-3 text-emerald-400" />}
+                {count > 0 ? <AlertTriangle className="w-3 h-3 text-yellow-400" /> : <Check className="w-3 h-3 text-success" />}
               </div>
-              <div className={`text-lg font-bold tabular-nums ${count > 0 ? 'text-yellow-400' : 'text-emerald-400'}`}>
+              <div className={`text-lg font-bold tabular-nums ${count > 0 ? 'text-yellow-400' : 'text-success'}`}>
                 {count}
               </div>
               <div className="text-[10px] text-muted-foreground">{count > 0 ? 'open items' : 'clear'}</div>
@@ -99,7 +99,7 @@ export default function Reconciliation() {
             {alerts.map((alert, i) => (
               <div key={i} className="flex items-start justify-between p-2 rounded" style={{ background: '#1A1E24' }}>
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className={`w-3.5 h-3.5 mt-0.5 ${alert.severity === 'Critical' ? 'text-red-400' : 'text-orange-400'}`} />
+                  <AlertTriangle className={`w-3.5 h-3.5 mt-0.5 ${alert.severity === 'Critical' ? 'text-critical' : 'text-orange-400'}`} />
                   <div>
                     <p className="text-xs">{alert.message}</p>
                     <div className="flex items-center gap-2 mt-1">
@@ -140,7 +140,7 @@ export default function Reconciliation() {
                 <td className="py-2">
                   {item.status === 'Open' && (
                     <div className="flex gap-1">
-                      <Button variant="ghost" size="sm" className="h-5 text-[10px] text-emerald-400" onClick={() => resolveItem(item)}>Resolve</Button>
+                      <Button variant="ghost" size="sm" className="h-5 text-[10px] text-success" onClick={() => resolveItem(item)}>Resolve</Button>
                       <Button variant="ghost" size="sm" className="h-5 text-[10px] text-muted-foreground" onClick={() => ignoreItem(item)}>Ignore</Button>
                     </div>
                   )}

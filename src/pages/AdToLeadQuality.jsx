@@ -126,13 +126,13 @@ export default function AdToLeadQuality() {
                   <td className="py-1.5 pr-2 text-muted-foreground max-w-24 truncate">{r.supplier}</td>
                   <td className="py-1.5 pr-2 text-muted-foreground max-w-24 truncate">{r.buyer}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatNumber(r.leads)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-emerald-400">{formatNumber(r.sold)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-red-400">{formatNumber(r.dq)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-red-400">{formatNumber(r.fake)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-success">{formatNumber(r.sold)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-critical">{formatNumber(r.dq)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-critical">{formatNumber(r.fake)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums text-orange-400">{formatNumber(r.returned)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">
                     {r.leads > 0 ? (
-                      <span className={r.phoneVerifiedRate > 0.7 ? 'text-emerald-400' : 'text-yellow-400'}>
+                      <span className={r.phoneVerifiedRate > 0.7 ? 'text-success' : 'text-yellow-400'}>
                         {formatPercent(r.phoneVerifiedRate * 100)}
                       </span>
                     ) : '—'}
@@ -141,7 +141,7 @@ export default function AdToLeadQuality() {
                   <td className="py-1.5 pr-2 text-right tabular-nums text-orange-400">{formatPercent(r.returnRate * 100)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(r.revPerLead)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(r.marginPerLead)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.call_count > 0 ? formatNumber(r.call_count) : <span className="text-red-400/50">—</span>}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.call_count > 0 ? formatNumber(r.call_count) : <span className="text-critical/50">—</span>}</td>
                   <td className="py-1.5 pr-2 text-right">
                     <QualityScoreBadge score={r.qualityScore} />
                   </td>
@@ -170,7 +170,7 @@ export default function AdToLeadQuality() {
 }
 
 function QualityScoreBadge({ score }) {
-  const color = score >= 7 ? 'bg-emerald-500/20 text-emerald-400' : score >= 4 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400';
+  const color = score >= 7 ? 'bg-emerald-500/20 text-success' : score >= 4 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-critical';
   return (
     <span className={`text-[10px] px-2 py-0.5 rounded font-bold tabular-nums ${color}`}>
       {score.toFixed(1)}

@@ -1,46 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 213 17% 10%;
-    --foreground: 0 0% 100%;
-    --card: 215 18% 13%;
-    --card-foreground: 0 0% 100%;
-    --popover: 215 18% 15%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 84% 60%;
+    --background: 214 18% 17%;
+    --foreground: 204 24% 96%;
+    --card: 213 17% 20%;
+    --card-foreground: 204 24% 96%;
+    --popover: 215 18% 23%;
+    --popover-foreground: 204 24% 96%;
+    --primary: 358 78% 52%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 11% 22%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 210 11% 22%;
-    --muted-foreground: 212 9% 58%;
-    --accent: 210 11% 22%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
+    --secondary: 213 17% 20%;
+    --secondary-foreground: 204 24% 96%;
+    --muted: 213 17% 20%;
+    --muted-foreground: 211 10% 54%;
+    --accent: 214 18% 23%;
+    --accent-foreground: 204 24% 96%;
+    --destructive: 358 78% 52%;
     --destructive-foreground: 0 0% 100%;
-    --border: 210 11% 22%;
-    --input: 210 11% 22%;
-    --ring: 0 84% 60%;
-    --chart-1: 0 84% 60%;
-    --chart-2: 142 71% 45%;
-    --chart-3: 217 91% 60%;
-    --chart-4: 38 92% 50%;
-    --chart-5: 271 91% 65%;
-    --radius: 0.5rem;
-    --font-heading: ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-body: ui-sans-serif, system-ui, -apple-system, sans-serif;
-    --font-display: ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --border: 213 12% 27%;
+    --input: 213 12% 27%;
+    --ring: 358 78% 52%;
+    --chart-1: 358 78% 52%;
+    --chart-2: 148 53% 47%;
+    --chart-3: 200 100% 65%;
+    --chart-4: 37 91% 55%;
+    --chart-5: 255 92% 76%;
+    --radius: 0.75rem;
+    --font-heading: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
     --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
-    --sidebar-background: 214 12% 12%;
-    --sidebar-foreground: 210 11% 71%;
-    --sidebar-primary: 0 84% 60%;
+    --sidebar-background: 214 19% 14%;
+    --sidebar-foreground: 213 15% 71%;
+    --sidebar-primary: 358 78% 52%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 349 22% 19%;
+    --sidebar-accent: 358 30% 20%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 210 11% 22%;
-    --sidebar-ring: 0 84% 60%;
+    --sidebar-border: 213 12% 24%;
+    --sidebar-ring: 358 78% 52%;
+    --success: 148 53% 47%;
+    --warning: 37 91% 55%;
+    --critical: 359 100% 65%;
+    --info: 200 100% 65%;
+    --purple: 255 92% 76%;
   }
 }
 
@@ -48,28 +55,31 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-size: 13px;
+  }
   body {
     @apply bg-background text-foreground font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* Tabular figures for financial data */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* Custom scrollbar for dark theme */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(213, 17%, 10%);
+  background: hsl(214, 18%, 17%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(210, 11%, 28%);
+  background: hsl(213, 12%, 30%);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(210, 11%, 36%);
+  background: hsl(213, 12%, 38%);
 }

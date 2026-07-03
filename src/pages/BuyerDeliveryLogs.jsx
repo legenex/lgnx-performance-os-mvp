@@ -88,22 +88,22 @@ export default function BuyerDeliveryLogs() {
       {/* Buyer Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {buyerSummary.map((b, i) => (
-          <div key={i} className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
+          <div key={i} className="rounded-lg border border-border p-3" style={{ background: 'hsl(213, 17%, 20%)' }}>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold">{b.buyer}</span>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded ${b.errorRate > 20 ? 'bg-red-500/20 text-red-400' : b.errorRate > 5 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-emerald-500/20 text-emerald-400'}`}>
+              <span className={`text-[9px] px-1.5 py-0.5 rounded ${b.errorRate > 20 ? 'bg-red-500/20 text-critical' : b.errorRate > 5 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-emerald-500/20 text-success'}`}>
                 {b.errorRate.toFixed(0)}% err
               </span>
             </div>
             <div className="grid grid-cols-4 gap-2 text-[10px]">
               <div><p className="text-muted-foreground">Total</p><p className="font-bold tabular-nums">{formatNumber(b.total)}</p></div>
-              <div><p className="text-muted-foreground">Sold</p><p className="font-bold tabular-nums text-emerald-400">{formatNumber(b.sold)}</p></div>
-              <div><p className="text-muted-foreground">Failed</p><p className="font-bold tabular-nums text-red-400">{formatNumber(b.failed + b.timeout)}</p></div>
+              <div><p className="text-muted-foreground">Sold</p><p className="font-bold tabular-nums text-success">{formatNumber(b.sold)}</p></div>
+              <div><p className="text-muted-foreground">Failed</p><p className="font-bold tabular-nums text-critical">{formatNumber(b.failed + b.timeout)}</p></div>
               <div><p className="text-muted-foreground">Accept</p><p className="font-bold tabular-nums">{formatPercent(b.acceptanceRate)}</p></div>
             </div>
             <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
               <span className="text-[10px] text-muted-foreground">Avg response: <span className="text-foreground tabular-nums">{b.avgResponseMs}ms</span></span>
-              <span className="text-[10px] text-muted-foreground">Revenue: <span className="text-emerald-400 tabular-nums">{formatMoney(b.totalRevenue)}</span></span>
+              <span className="text-[10px] text-muted-foreground">Revenue: <span className="text-success tabular-nums">{formatMoney(b.totalRevenue)}</span></span>
             </div>
           </div>
         ))}
@@ -156,7 +156,7 @@ export default function BuyerDeliveryLogs() {
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(l.buyer_price)}</td>
                   <td className="py-1.5 pr-2 text-center">{l.sold ? '✓' : '—'}</td>
                   <td className="py-1.5 pr-2 text-center tabular-nums">{l.retry_count || 0}</td>
-                  <td className="py-1.5 pr-2 text-red-400 text-[10px] max-w-32 truncate">{l.error_message || '—'}</td>
+                  <td className="py-1.5 pr-2 text-critical text-[10px] max-w-32 truncate">{l.error_message || '—'}</td>
                   <td className="py-1.5">
                     {['Failed', 'Timeout', 'Rejected'].includes(l.status) && !l.final_attempt && (
                       <Button variant="ghost" size="sm" className="text-[9px] h-6 gap-1" onClick={() => retryDelivery(l)}>
@@ -176,10 +176,10 @@ export default function BuyerDeliveryLogs() {
 
 function DeliveryStatusBadge({ status }) {
   const colors = {
-    'Sold': 'bg-emerald-500/20 text-emerald-400',
-    'Success': 'bg-emerald-500/20 text-emerald-400',
-    'Failed': 'bg-red-500/20 text-red-400',
-    'Timeout': 'bg-red-500/20 text-red-400',
+    'Sold': 'bg-emerald-500/20 text-success',
+    'Success': 'bg-emerald-500/20 text-success',
+    'Failed': 'bg-red-500/20 text-critical',
+    'Timeout': 'bg-red-500/20 text-critical',
     'Rejected': 'bg-orange-500/20 text-orange-400',
     'DQ': 'bg-orange-500/20 text-orange-400',
     'Unsold': 'bg-gray-500/20 text-gray-400',

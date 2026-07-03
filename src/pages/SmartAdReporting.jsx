@@ -178,30 +178,30 @@ export default function SmartAdReporting() {
       </div>
 
       {adAlerts.length > 0 && (
-        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-yellow-500/10 border border-yellow-500/20">
-          <AlertTriangle className="w-4 h-4 text-yellow-400 mt-0.5 flex-shrink-0" />
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-warning/10 border border-warning/20">
+          <AlertTriangle className="w-4 h-4 text-warning mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-xs text-yellow-300 font-medium">{adAlerts.length} active ad alert(s)</p>
+            <p className="text-xs text-warning font-medium">{adAlerts.length} active ad alert(s)</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{adAlerts.slice(0, 2).map(a => a.message).join(' · ')}</p>
           </div>
         </div>
       )}
 
       {trackingBroken.length > 0 && (
-        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-          <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-critical/10 border border-critical/20">
+          <AlertTriangle className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-xs text-red-300 font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
+            <p className="text-xs text-critical font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{trackingBroken.slice(0, 3).join(', ')}</p>
           </div>
         </div>
       )}
 
       {attributionMissing.length > 0 && (
-        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-orange-500/10 border border-orange-500/20">
-          <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-warning/10 border border-warning/20">
+          <AlertTriangle className="w-4 h-4 text-warning mt-0.5 flex-shrink-0" />
           <div>
-            <p className="text-xs text-orange-300 font-medium">{attributionMissing.length} gateway campaign(s) missing from ad metrics — Attribution Missing</p>
+            <p className="text-xs text-warning font-medium">{attributionMissing.length} gateway campaign(s) missing from ad metrics — Attribution Missing</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">{attributionMissing.slice(0, 3).join(', ')}</p>
           </div>
         </div>
@@ -211,15 +211,15 @@ export default function SmartAdReporting() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <Card title="Tracked Spend" value={formatMoney(cards.tracked)} pill="BOOKED" />
         <Card title="Paid Spend" value={formatMoney(cards.paid)} pill="CASH" />
-        <Card title="Spend Gap" value={formatMoney(cards.gap)} color={cards.gap > 2000 ? 'text-red-400' : 'text-muted-foreground'} />
+        <Card title="Spend Gap" value={formatMoney(cards.gap)} color={cards.gap > 2000 ? 'text-critical' : 'text-muted-foreground'} />
         <Card title="Booked Revenue" value={formatMoney(cards.bookedRev)} pill="BOOKED" />
         <Card title="Collected Cash" value={formatMoney(cards.collected)} pill="CASH" />
-        <Card title="Call Revenue" value={cards.callRev > 0 ? formatMoney(cards.callRev) : <span className="text-red-400/60">MISSING</span>} pill="BOOKED" />
+        <Card title="Call Revenue" value={cards.callRev > 0 ? formatMoney(cards.callRev) : <span className="text-critical/60">MISSING</span>} pill="BOOKED" />
         <Card title="True Gross Margin" value={formatMoney(cards.trueMargin)} color={moneyColor(cards.trueMargin)} />
         <Card title="Cash Margin" value={formatMoney(cards.cashMargin)} color={moneyColor(cards.cashMargin)} />
-        <Card title="To Cut" value={cards.toCut} color="text-red-400" icon={Scissors} />
+        <Card title="To Cut" value={cards.toCut} color="text-critical" icon={Scissors} />
         <Card title="To Scale" value={cards.toScale} color="text-emerald-400" icon={Rocket} />
-        <Card title="Missing Data" value={cards.missingData} color="text-yellow-400" />
+        <Card title="Missing Data" value={cards.missingData} color="text-warning" />
         <Card title="Campaigns" value={aggregated.length} />
       </div>
 
@@ -264,17 +264,17 @@ export default function SmartAdReporting() {
                   <td className="py-1.5 pr-2 font-medium max-w-36 truncate">{r.campaign_name}</td>
                   <td className="py-1.5 pr-2 text-muted-foreground max-w-28 truncate">{r.adset_name || '—'}</td>
                   <td className="py-1.5 pr-2 text-muted-foreground max-w-28 truncate">{r.ad_name || '—'}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-orange-400">{formatMoney(r.spend_tracked)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-warning">{formatMoney(r.spend_tracked)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(r.spend_paid)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatNumber(r.web_lead_count)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums text-emerald-400">{formatNumber(r.sold_leads)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-red-400">{formatNumber(r.dq_leads)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-critical">{formatNumber(r.dq_leads)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatPercent(r.return_rate * 100)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(r.web_lead_revenue)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.has_calls ? formatMoney(r.call_revenue) : <span className="text-red-400/50">—</span>}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.has_calls ? formatMoney(r.call_revenue) : <span className="text-critical/50">—</span>}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums font-medium">{formatMoney(r.total_booked_revenue)}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.has_cash ? formatMoney(r.buyer_collected_cash) : <span className="text-red-400/50">?</span>}</td>
-                  <td className="py-1.5 pr-2 text-right tabular-nums text-orange-400">{formatMoney(r.supplier_payout_accrued)}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums">{r.has_cash ? formatMoney(r.buyer_collected_cash) : <span className="text-critical/50">?</span>}</td>
+                  <td className="py-1.5 pr-2 text-right tabular-nums text-warning">{formatMoney(r.supplier_payout_accrued)}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(r.supplier_payout_paid)}</td>
                   <td className={`py-1.5 pr-2 text-right tabular-nums font-bold ${moneyColor(r.true_gross_margin)}`}>{formatMoney(r.true_gross_margin)}</td>
                   <td className={`py-1.5 pr-2 text-right tabular-nums font-bold ${r.cash_margin !== null ? moneyColor(r.cash_margin) : 'text-muted-foreground/40'}`}>{r.cash_margin !== null ? formatMoney(r.cash_margin) : '?'}</td>
@@ -312,11 +312,11 @@ function Card({ title, value, pill, color, icon: Icon }) {
 function DataQualityBadge({ quality }) {
   const colors = {
     'Complete': 'bg-emerald-500/10 text-emerald-400',
-    'Missing Calls': 'bg-red-500/10 text-red-400',
-    'Missing Spend': 'bg-red-500/10 text-red-400',
-    'Missing Buyer Feedback': 'bg-yellow-500/10 text-yellow-400',
-    'Missing Cash': 'bg-yellow-500/10 text-yellow-400',
-    'Incomplete': 'bg-orange-500/10 text-orange-400',
+    'Missing Calls': 'bg-red-500/10 text-critical',
+    'Missing Spend': 'bg-red-500/10 text-critical',
+    'Missing Buyer Feedback': 'bg-yellow-500/10 text-warning',
+    'Missing Cash': 'bg-yellow-500/10 text-warning',
+    'Incomplete': 'bg-orange-500/10 text-warning',
   };
   return (
     <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${colors[quality] || colors['Incomplete']}`}>
@@ -327,10 +327,10 @@ function DataQualityBadge({ quality }) {
 
 function GatewayStatusBadge({ status, broken }) {
   if (broken) {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-red-400">⚠ Tracking Broken</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-critical">⚠ Tracking Broken</span>;
   }
   if (status === 'CAPI Missing') {
-    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-orange-400">⚠ CAPI Missing</span>;
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-warning">⚠ CAPI Missing</span>;
   }
   if (status === 'OK') {
     return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-emerald-400">✓ OK</span>;

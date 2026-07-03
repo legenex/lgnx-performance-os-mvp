@@ -81,8 +81,8 @@ export default function CapiEventTracking() {
       {/* Top Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
         <CapiCard title="Total Events" value={formatNumber(stats.total)} />
-        <CapiCard title="Sent" value={formatNumber(stats.sent)} color="text-emerald-400" />
-        <CapiCard title="Failed" value={formatNumber(stats.failed)} color="text-red-400" icon={AlertTriangle} />
+        <CapiCard title="Sent" value={formatNumber(stats.sent)} color="text-success" />
+        <CapiCard title="Failed" value={formatNumber(stats.failed)} color="text-critical" icon={AlertTriangle} />
         <CapiCard title="Queued" value={formatNumber(stats.queued)} color="text-yellow-400" />
         <CapiCard title="Sold_Lead Events" value={formatNumber(stats.soldEvents)} color="text-blue-400" icon={Zap} />
       </div>
@@ -127,7 +127,7 @@ export default function CapiEventTracking() {
       {/* Failed Event Retry Queue */}
       <SectionPanel title="Failed Event Retry Queue" subtitle={`${events.filter(e => e.status === 'Failed').length} failed events`}>
         {events.filter(e => e.status === 'Failed').length === 0 ? (
-          <p className="text-xs text-emerald-400">No failed events.</p>
+          <p className="text-xs text-success">No failed events.</p>
         ) : (
           <table className="w-full text-xs">
             <thead>
@@ -148,7 +148,7 @@ export default function CapiEventTracking() {
                   <td className="py-1.5 pr-2 font-medium">{e.event_name}</td>
                   <td className="py-1.5 pr-2 font-mono text-[10px]">{e.lead_key || '—'}</td>
                   <td className="py-1.5 pr-2 font-mono text-[10px] text-muted-foreground">{e.dedupe_key || '—'}</td>
-                  <td className="py-1.5 pr-2 text-red-400 text-[10px] max-w-48 truncate">{e.error_message || '—'}</td>
+                  <td className="py-1.5 pr-2 text-critical text-[10px] max-w-48 truncate">{e.error_message || '—'}</td>
                   <td className="py-1.5 pr-2 text-center tabular-nums">{e.retry_count || 0}</td>
                   <td className="py-1.5 pr-2">
                     <button onClick={() => retryEvent(e)} className="text-xs text-blue-400 hover:text-blue-300 flex items-center gap-1">
@@ -214,7 +214,7 @@ export default function CapiEventTracking() {
 
 function CapiCard({ title, value, color, icon: Icon }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}
@@ -226,8 +226,8 @@ function CapiCard({ title, value, color, icon: Icon }) {
 
 function EventStatusBadge({ status }) {
   const colors = {
-    'Sent': 'bg-emerald-500/20 text-emerald-400',
-    'Failed': 'bg-red-500/20 text-red-400',
+    'Sent': 'bg-emerald-500/20 text-success',
+    'Failed': 'bg-red-500/20 text-critical',
     'Queued': 'bg-yellow-500/20 text-yellow-400',
     'Retried': 'bg-blue-500/20 text-blue-400',
     'Ignored': 'bg-gray-500/20 text-gray-400',

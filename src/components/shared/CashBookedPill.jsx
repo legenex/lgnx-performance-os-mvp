@@ -7,8 +7,8 @@ export default function CashBookedPill({ type, size = 'sm' }) {
   return (
     <span className={`inline-flex items-center rounded font-medium uppercase ${sizeClass} ${
       isCash
-        ? 'bg-emerald-500/10 text-emerald-400'
-        : 'bg-blue-500/10 text-blue-400'
+        ? 'bg-success/10 text-success'
+        : 'bg-info/10 text-info'
     }`}>
       {isCash ? 'CASH' : 'BOOKED'}
     </span>

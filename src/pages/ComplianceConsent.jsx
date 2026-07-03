@@ -72,11 +72,11 @@ export default function ComplianceConsent() {
       {/* Top Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <CompCard title="Total Records" value={formatNumber(stats.total)} />
-        <CompCard title="TrustedForm Present" value={formatNumber(stats.tfPresent)} color="text-emerald-400" />
-        <CompCard title="TrustedForm Missing" value={formatNumber(stats.tfMissing)} color="text-red-400" icon={AlertTriangle} />
-        <CompCard title="Jornaya Missing" value={formatNumber(stats.jMissing)} color="text-red-400" />
-        <CompCard title="High Risk" value={formatNumber(stats.highRisk)} color="text-red-400" />
-        <CompCard title="TCPA Failed" value={formatNumber(stats.tcpaFail)} color="text-red-400" />
+        <CompCard title="TrustedForm Present" value={formatNumber(stats.tfPresent)} color="text-success" />
+        <CompCard title="TrustedForm Missing" value={formatNumber(stats.tfMissing)} color="text-critical" icon={AlertTriangle} />
+        <CompCard title="Jornaya Missing" value={formatNumber(stats.jMissing)} color="text-critical" />
+        <CompCard title="High Risk" value={formatNumber(stats.highRisk)} color="text-critical" />
+        <CompCard title="TCPA Failed" value={formatNumber(stats.tcpaFail)} color="text-critical" />
       </div>
 
       {/* Missing TrustedForm Spike */}
@@ -100,7 +100,7 @@ export default function ComplianceConsent() {
       {/* Sold Leads Missing Compliance */}
       {soldLeadsMissingCompliance.length > 0 && (
         <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
-          <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+          <AlertTriangle className="w-4 h-4 text-critical mt-0.5 flex-shrink-0" />
           <div>
             <p className="text-xs text-red-300 font-medium">{soldLeadsMissingCompliance.length} sold lead(s) missing TrustedForm/Jornaya evidence</p>
             <p className="text-[11px] text-muted-foreground mt-0.5">
@@ -169,7 +169,7 @@ export default function ComplianceConsent() {
 
 function CompCard({ title, value, color, icon: Icon }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}
@@ -181,19 +181,19 @@ function CompCard({ title, value, color, icon: Icon }) {
 
 function ComplianceBadge({ status }) {
   const colors = {
-    'Present': 'bg-emerald-500/20 text-emerald-400',
-    'Missing': 'bg-red-500/20 text-red-400',
-    'Invalid': 'bg-red-500/20 text-red-400',
+    'Present': 'bg-emerald-500/20 text-success',
+    'Missing': 'bg-red-500/20 text-critical',
+    'Invalid': 'bg-red-500/20 text-critical',
     'Expired': 'bg-orange-500/20 text-orange-400',
-    'Passed': 'bg-emerald-500/20 text-emerald-400',
+    'Passed': 'bg-emerald-500/20 text-success',
     'Warning': 'bg-yellow-500/20 text-yellow-400',
-    'Failed': 'bg-red-500/20 text-red-400',
+    'Failed': 'bg-red-500/20 text-critical',
     'Unknown': 'bg-gray-500/20 text-gray-400',
   };
   return <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${colors[status] || colors['Unknown']}`}>{status}</span>;
 }
 
 function RiskBadge({ risk }) {
-  const colors = { 'Low': 'bg-emerald-500/20 text-emerald-400', 'Medium': 'bg-yellow-500/20 text-yellow-400', 'High': 'bg-red-500/20 text-red-400', 'Unknown': 'bg-gray-500/20 text-gray-400' };
+  const colors = { 'Low': 'bg-emerald-500/20 text-success', 'Medium': 'bg-yellow-500/20 text-yellow-400', 'High': 'bg-red-500/20 text-critical', 'Unknown': 'bg-gray-500/20 text-gray-400' };
   return <span className={`text-[9px] px-1.5 py-0.5 rounded font-medium ${colors[risk] || colors['Unknown']}`}>{risk}</span>;
 }

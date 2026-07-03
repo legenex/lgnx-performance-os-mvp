@@ -114,8 +114,8 @@ export default function LeadEconomics() {
                   <td className="py-1.5 pr-3 tabular-nums text-muted-foreground">{l.date}</td>
                   <td className="py-1.5 pr-3">
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${
-                      l.lead_status === 'Sold' ? 'bg-emerald-500/10 text-emerald-400' :
-                      l.lead_status === 'Disqualified' ? 'bg-red-500/10 text-red-400' :
+                      l.lead_status === 'Sold' ? 'bg-emerald-500/10 text-success' :
+                      l.lead_status === 'Disqualified' ? 'bg-red-500/10 text-critical' :
                       l.lead_status === 'Returned' ? 'bg-orange-500/10 text-orange-400' :
                       'bg-gray-500/10 text-gray-400'
                     }`}>{l.lead_status}</span>
@@ -126,7 +126,7 @@ export default function LeadEconomics() {
                   <td className="py-1.5 pr-3 text-muted-foreground">{l.accident_state || l.geo_state || '—'}</td>
                   <td className="py-1.5 pr-3 text-right tabular-nums">{formatMoney(l.lead_revenue)}</td>
                   <td className="py-1.5 pr-3 text-right tabular-nums text-orange-400">{formatMoney(l.supplier_payout)}</td>
-                  <td className={`py-1.5 text-right tabular-nums font-medium ${l.profit >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{formatMoney(l.profit)}</td>
+                  <td className={`py-1.5 text-right tabular-nums font-medium ${l.profit >= 0 ? 'text-success' : 'text-critical'}`}>{formatMoney(l.profit)}</td>
                 </tr>
               ))}
             </tbody>

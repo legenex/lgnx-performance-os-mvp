@@ -216,9 +216,9 @@ export default function GatewayReconciliation() {
       {/* Summary */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <ReconCard title="Total Checks" value={formatNumber(checks.length)} />
-        <ReconCard title="Open Issues" value={formatNumber(openCount)} color={openCount > 0 ? 'text-yellow-400' : 'text-emerald-400'} icon={openCount > 0 ? AlertTriangle : CheckCircle2} />
-        <ReconCard title="Critical" value={formatNumber(criticalCount)} color={criticalCount > 0 ? 'text-red-400' : 'text-emerald-400'} icon={criticalCount > 0 ? XCircle : CheckCircle2} />
-        <ReconCard title="Matched" value={formatNumber(checks.filter(c => c.status === 'Matched').length)} color="text-emerald-400" icon={CheckCircle2} />
+        <ReconCard title="Open Issues" value={formatNumber(openCount)} color={openCount > 0 ? 'text-yellow-400' : 'text-success'} icon={openCount > 0 ? AlertTriangle : CheckCircle2} />
+        <ReconCard title="Critical" value={formatNumber(criticalCount)} color={criticalCount > 0 ? 'text-critical' : 'text-success'} icon={criticalCount > 0 ? XCircle : CheckCircle2} />
+        <ReconCard title="Matched" value={formatNumber(checks.filter(c => c.status === 'Matched').length)} color="text-success" icon={CheckCircle2} />
       </div>
 
       {/* Reconciliation Table */}
@@ -246,10 +246,10 @@ export default function GatewayReconciliation() {
                   <td className="py-2 pr-2 text-right tabular-nums">
                     {c.targetValue !== undefined ? formatMoney(c.targetValue) : formatNumber(c.targetCount || 0)}
                   </td>
-                  <td className={`py-2 pr-2 text-right tabular-nums font-medium ${c.variance !== 0 && c.severity !== 'OK' ? 'text-red-400' : 'text-muted-foreground'}`}>
+                  <td className={`py-2 pr-2 text-right tabular-nums font-medium ${c.variance !== 0 && c.severity !== 'OK' ? 'text-critical' : 'text-muted-foreground'}`}>
                     {c.sourceValue !== undefined ? formatMoney(c.variance) : formatNumber(c.variance || 0)}
                   </td>
-                  <td className="py-2 pr-2">{c.severity === 'OK' ? <span className="text-[9px] text-emerald-400">OK</span> : <StatusBadge status={c.severity} />}</td>
+                  <td className="py-2 pr-2">{c.severity === 'OK' ? <span className="text-[9px] text-success">OK</span> : <StatusBadge status={c.severity} />}</td>
                   <td className="py-2 pr-2 text-[10px] text-muted-foreground max-w-64">{c.detail}</td>
                   <td className="py-2 pr-2"><StatusBadge status={c.status === 'Matched' ? 'OK' : 'Open'} /></td>
                 </tr>
@@ -277,7 +277,7 @@ export default function GatewayReconciliation() {
 
 function ReconCard({ title, value, color, icon: Icon }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}

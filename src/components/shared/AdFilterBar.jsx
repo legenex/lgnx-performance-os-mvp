@@ -30,7 +30,7 @@ export default function AdFilterBar({ filters, onChange, accounts = [], campaign
   }
 
   return (
-    <div className="flex flex-wrap items-end gap-3 p-3 rounded-lg border border-border" style={{ background: '#1c2128' }}>
+    <div className="flex flex-wrap items-end gap-3 p-3 rounded-lg border border-border" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <Select label="From" value={filters.dateFrom || ''} options={[]} onChange={v => update('dateFrom', v)} allLabel="—" />
       <input
         type="date"

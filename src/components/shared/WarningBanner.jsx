@@ -8,8 +8,8 @@ export default function WarningBanner({ type = 'warning', children }) {
   return (
     <div className={`flex items-start gap-2 px-4 py-3 rounded-lg text-xs ${
       isInfo 
-        ? 'bg-blue-500/10 border border-blue-500/20 text-blue-300' 
-        : 'bg-orange-500/10 border border-orange-500/20 text-orange-300'
+        ? 'bg-info/10 border border-info/20 text-info'
+        : 'bg-warning/10 border border-warning/20 text-warning'
     }`}>
       <Icon className="w-4 h-4 flex-shrink-0 mt-0.5" />
       <div>{children}</div>

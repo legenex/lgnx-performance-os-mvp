@@ -209,7 +209,7 @@ export default function SettingsPage() {
                 { platform: 'YouTube', account: 'LGNX YouTube', status: 'Connected', id: 'yt_001' },
                 { platform: 'Taboola', account: 'LGNX Taboola', status: 'Disconnected', id: 'tb_001' },
               ].map((a, i) => (
-                <div key={i} className="flex items-center justify-between p-2 rounded" style={{ background: '#1A1E24' }}>
+                <div key={i} className="flex items-center justify-between p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-medium">{a.platform}</span>
                     <span className="text-xs text-muted-foreground">{a.account}</span>
@@ -253,7 +253,7 @@ export default function SettingsPage() {
                 <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">LeadByte Status Mapping</h3>
                 <div className="grid grid-cols-2 gap-2 max-w-2xl text-xs">
                   {[['sold', 'Sold'], ['unsold', 'Unsold'], ['disqualified', 'Disqualified'], ['returned', 'Returned'], ['fake', 'Fake']].map(([lb, internal]) => (
-                    <div key={lb} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                    <div key={lb} className="flex items-center gap-2 p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
                       <span className="font-mono text-[10px] text-muted-foreground">{lb}</span>
                       <span className="text-muted-foreground">→</span>
                       <span className="font-medium">{internal}</span>
@@ -267,7 +267,7 @@ export default function SettingsPage() {
                 <p className="text-[10px] text-muted-foreground mb-2">Configure per-buyer API endpoints, auth tokens, and delivery methods. Set as environment variables.</p>
                 <div className="space-y-1 max-w-2xl">
                   {['Walker Advertising', 'Inbounds', '4LegalLeads', 'Rainwater Holt & Sexton'].map(b => (
-                    <div key={b} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                    <div key={b} className="flex items-center gap-2 p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
                       <span className="text-xs font-medium flex-1">{b}</span>
                       <Button variant="outline" size="sm" className="text-[9px] h-6">Configure</Button>
                     </div>
@@ -302,7 +302,7 @@ export default function SettingsPage() {
                 <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Event Name Mapping</h3>
                 <div className="grid grid-cols-2 gap-2 max-w-2xl text-xs">
                   {[['Lead', 'Lead'], ['Sold_Lead', 'Purchase'], ['QualifiedLead', 'QualifiedLead']].map(([internal, platform]) => (
-                    <div key={internal} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                    <div key={internal} className="flex items-center gap-2 p-2 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
                       <span className="font-mono text-[10px] text-muted-foreground">{internal}</span>
                       <span className="text-muted-foreground">→</span>
                       <span className="font-medium">{platform}</span>
@@ -340,7 +340,7 @@ export default function SettingsPage() {
                 { role: 'Media Buyer', desc: 'Campaign and lead performance', screens: 'Smart Ad Reporting, Creative Intelligence, Cut/Watch/Scale, Campaign True Margin, Lead Economics, Media Gap, Ad-to-Lead Quality' },
                 { role: 'Finance', desc: 'Cash, accounting, and reconciliation', screens: 'Cash, Xero, Receivables, Payables, Reconciliation' },
               ].map((r, i) => (
-                <div key={i} className="p-3 rounded" style={{ background: '#1A1E24' }}>
+                <div key={i} className="p-3 rounded" style={{ background: 'hsl(214, 18%, 23%)' }}>
                   <div className="flex items-center gap-2 mb-1">
                     <Shield className="w-3.5 h-3.5 text-muted-foreground" />
                     <span className="text-xs font-semibold">{r.role}</span>

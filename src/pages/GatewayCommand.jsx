@@ -90,16 +90,16 @@ export default function GatewayCommand() {
 
       {/* Top Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-        <Card title="Received Today" value={formatNumber(stats.received)} icon={Radio} color="text-blue-400" />
+        <Card title="Received Today" value={formatNumber(stats.received)} icon={Radio} color="text-info" />
         <Card title="Validated" value={formatNumber(stats.validated)} color="text-cyan-400" />
         <Card title="Posted" value={formatNumber(stats.posted)} color="text-indigo-400" />
-        <Card title="Sold" value={formatNumber(stats.sold)} color="text-emerald-400" />
+        <Card title="Sold" value={formatNumber(stats.sold)} color="text-success" />
         <Card title="Unsold" value={formatNumber(stats.unsold)} color="text-gray-400" />
-        <Card title="DQ" value={formatNumber(stats.dq)} color="text-orange-400" />
-        <Card title="Rejected" value={formatNumber(stats.rejected)} color="text-red-400" />
-        <Card title="Delivery Errors" value={formatNumber(stats.deliveryErrors)} color="text-red-400" icon={Truck} />
-        <Card title="CAPI Failures" value={formatNumber(errors.filter(e => e.category === 'CAPI').length)} color="text-red-400" icon={Zap} />
-        <Card title="Compliance Warnings" value={formatNumber(errors.filter(e => e.category === 'Compliance').length)} color="text-yellow-400" icon={Shield} />
+        <Card title="DQ" value={formatNumber(stats.dq)} color="text-warning" />
+        <Card title="Rejected" value={formatNumber(stats.rejected)} color="text-critical" />
+        <Card title="Delivery Errors" value={formatNumber(stats.deliveryErrors)} color="text-critical" icon={Truck} />
+        <Card title="CAPI Failures" value={formatNumber(errors.filter(e => e.category === 'CAPI').length)} color="text-critical" icon={Zap} />
+        <Card title="Compliance Warnings" value={formatNumber(errors.filter(e => e.category === 'Compliance').length)} color="text-warning" icon={Shield} />
         <Card title="Revenue (BOOKED)" value={formatMoney(stats.revenue)} color={moneyColor(stats.revenue)} pill="BOOKED" />
         <Card title="Gross Margin (BOOKED)" value={formatMoney(stats.grossMargin)} color={moneyColor(stats.grossMargin)} pill="BOOKED" />
       </div>
@@ -113,14 +113,14 @@ export default function GatewayCommand() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <SectionPanel title="Critical Gateway Alerts" subtitle={`${criticalAlerts.length} active`}>
           {criticalAlerts.length === 0 ? (
-            <p className="text-xs text-emerald-400">All clear — no critical alerts.</p>
+            <p className="text-xs text-success">All clear — no critical alerts.</p>
           ) : (
             <div className="space-y-2">
               {criticalAlerts.map((a, i) => {
                 const Icon = a.icon;
                 return (
                   <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#22272e' }}>
-                    <Icon className={`w-4 h-4 mt-0.5 ${a.severity === 'Critical' ? 'text-red-400' : a.severity === 'High' ? 'text-orange-400' : 'text-yellow-400'}`} />
+                    <Icon className={`w-4 h-4 mt-0.5 ${a.severity === 'Critical' ? 'text-critical' : a.severity === 'High' ? 'text-warning' : 'text-warning'}`} />
                     <div className="flex-1">
                       <p className="text-xs text-foreground">{a.msg}</p>
                       <p className="text-[10px] text-muted-foreground">{a.action}</p>
@@ -144,7 +144,7 @@ export default function GatewayCommand() {
                     <span className="text-xs text-foreground">{a.label}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    {a.count > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 font-medium">{a.count}</span>}
+                    {a.count > 0 && <span className="text-[10px] px-1.5 py-0.5 rounded bg-red-500/20 text-critical font-medium">{a.count}</span>}
                     <span className="text-[10px] text-muted-foreground">→</span>
                   </div>
                 </Link>
@@ -157,7 +157,7 @@ export default function GatewayCommand() {
       {/* Open Errors Summary */}
       <SectionPanel title="Open Gateway Errors" subtitle={`${errors.length} total`}>
         {errors.length === 0 ? (
-          <p className="text-xs text-emerald-400">No open errors.</p>
+          <p className="text-xs text-success">No open errors.</p>
         ) : (
           <table className="w-full text-xs">
             <thead>
@@ -189,7 +189,7 @@ export default function GatewayCommand() {
 
 function Card({ title, value, color, icon: Icon, pill }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: 'hsl(213, 17%, 20%)' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}

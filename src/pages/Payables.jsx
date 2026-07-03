@@ -90,7 +90,7 @@ export default function Payables() {
                 <tr key={i} className="border-b border-border/30 hover:bg-white/5">
                   <td className="py-2.5 pr-3 font-medium">{name}</td>
                   <td className="py-2.5 pr-3"><StatusBadge status={risk} /></td>
-                  <td className={`py-2.5 pr-3 text-right tabular-nums font-medium ${data.balance > 0 ? 'text-orange-400' : 'text-emerald-400'}`}>
+                  <td className={`py-2.5 pr-3 text-right tabular-nums font-medium ${data.balance > 0 ? 'text-warning' : 'text-success'}`}>
                     {formatMoney(data.balance)}
                   </td>
                   <td className="py-2.5 pr-3 text-right text-muted-foreground">{data.entries.length}</td>
@@ -128,7 +128,7 @@ export default function Payables() {
                   <td className="py-2 pr-3 tabular-nums text-muted-foreground">{inv.due_date}</td>
                   <td className="py-2 pr-3"><StatusBadge status={inv.status} /></td>
                   <td className="py-2 pr-3 text-right tabular-nums">{formatMoney(inv.total)}</td>
-                  <td className="py-2 text-right tabular-nums text-orange-400 font-medium">{formatMoney(inv.amount_due)}</td>
+                  <td className="py-2 text-right tabular-nums text-warning font-medium">{formatMoney(inv.amount_due)}</td>
                 </tr>
               ))}
             </tbody>

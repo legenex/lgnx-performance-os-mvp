@@ -7,7 +7,7 @@ export default function StatusBadge({ status, size = 'sm' }) {
   const sizeClass = size === 'sm' ? 'text-[10px] px-1.5 py-0.5' : 'text-xs px-2 py-1';
   
   return (
-    <span className={`inline-flex items-center rounded font-medium border ${color} ${sizeClass}`}>
+    <span className={`inline-flex items-center rounded font-medium border ${color} ${sizeClass} rounded-md`}>
       {status}
     </span>
   );

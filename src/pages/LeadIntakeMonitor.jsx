@@ -101,7 +101,7 @@ export default function LeadIntakeMonitor() {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2">
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border" style={{ background: '#1c2128' }}>
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border" style={{ background: 'hsl(213, 17%, 20%)' }}>
           <Search className="w-3.5 h-3.5 text-muted-foreground" />
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search lead key, phone, email..." className="bg-transparent text-xs outline-none w-48" />
         </div>
@@ -161,8 +161,8 @@ export default function LeadIntakeMonitor() {
                     <td className="py-1.5 pr-2 text-muted-foreground max-w-32 truncate">{l.utm_campaign || '—'}</td>
                     <td className="py-1.5 pr-2 text-right tabular-nums">{formatMoney(l.lead_revenue)}</td>
                     <td className="py-1.5 pr-2 text-right tabular-nums text-orange-400">{formatMoney(l.supplier_payout)}</td>
-                    <td className="py-1.5 pr-2">{l.created_lead_record ? <span className="text-[10px] text-emerald-400">✓ Linked</span> : <span className="text-[10px] text-yellow-400">Not created</span>}</td>
-                    <td className="py-1.5 pr-2">{missing.length > 0 ? <span className="text-[10px] text-red-400">{missing.join(', ')}</span> : <span className="text-[10px] text-emerald-400">✓</span>}</td>
+                    <td className="py-1.5 pr-2">{l.created_lead_record ? <span className="text-[10px] text-success">✓ Linked</span> : <span className="text-[10px] text-warning">Not created</span>}</td>
+                    <td className="py-1.5 pr-2">{missing.length > 0 ? <span className="text-[10px] text-critical">{missing.join(', ')}</span> : <span className="text-[10px] text-success">✓</span>}</td>
                     <td className="py-1.5 pr-2" onClick={e => e.stopPropagation()}>
                       <div className="flex items-center gap-1">
                         {!l.created_lead_record && l.lead_status === 'Sold' && (
@@ -198,14 +198,14 @@ function FilterSelect({ label, value, onChange, options }) {
 
 function LeadStatusBadge({ status }) {
   const colors = {
-    'Sold': 'bg-emerald-500/20 text-emerald-400',
+    'Sold': 'bg-emerald-500/20 text-success',
     'Posted': 'bg-indigo-500/20 text-indigo-400',
     'Validated': 'bg-cyan-500/20 text-cyan-400',
     'Received': 'bg-blue-500/20 text-blue-400',
     'Unsold': 'bg-gray-500/20 text-gray-400',
     'Disqualified': 'bg-orange-500/20 text-orange-400',
-    'Rejected': 'bg-red-500/20 text-red-400',
-    'Returned': 'bg-yellow-500/20 text-yellow-400',
+    'Rejected': 'bg-red-500/20 text-critical',
+    'Returned': 'bg-yellow-500/20 text-warning',
     'Fake': 'bg-red-600/20 text-red-500',
     'Error': 'bg-red-600/20 text-red-500',
   };
@@ -213,12 +213,12 @@ function LeadStatusBadge({ status }) {
 }
 
 function ValidationBadge({ status }) {
-  const colors = { 'Passed': 'text-emerald-400', 'Failed': 'text-red-400', 'Warning': 'text-yellow-400', 'Not Run': 'text-muted-foreground' };
+  const colors = { 'Passed': 'text-success', 'Failed': 'text-critical', 'Warning': 'text-warning', 'Not Run': 'text-muted-foreground' };
   return <span className={`text-[9px] ${colors[status] || 'text-muted-foreground'}`}>{status}</span>;
 }
 
 function RoutingBadge({ status }) {
-  const colors = { 'Complete': 'text-emerald-400', 'Routed': 'text-blue-400', 'Partial': 'text-yellow-400', 'Delivery Failed': 'text-red-400', 'Not Routed': 'text-muted-foreground' };
+  const colors = { 'Complete': 'text-success', 'Routed': 'text-blue-400', 'Partial': 'text-warning', 'Delivery Failed': 'text-critical', 'Not Routed': 'text-muted-foreground' };
   return <span className={`text-[9px] ${colors[status] || 'text-muted-foreground'}`}>{status}</span>;
 }
 

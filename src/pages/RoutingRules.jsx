@@ -117,10 +117,10 @@ export default function RoutingRules() {
                   <td className="py-2 pr-2 text-muted-foreground">{r.vertical}</td>
                   <td className="py-2 pr-2 font-medium">{r.buyer_name}</td>
                   <td className="py-2 pr-2 text-muted-foreground text-[10px]">{r.allowed_states || '—'}</td>
-                  <td className="py-2 pr-2 text-red-400 text-[10px]">{r.blocked_states || '—'}</td>
+                  <td className="py-2 pr-2 text-critical text-[10px]">{r.blocked_states || '—'}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">${r.min_price || 0}</td>
                   <td className="py-2 pr-2 text-right tabular-nums">{r.max_daily_cap || '—'}</td>
-                  <td className={`py-2 pr-2 text-right tabular-nums ${r.max_daily_cap > 0 && (r.current_daily_count || 0) >= r.max_daily_cap ? 'text-red-400 font-bold' : 'text-muted-foreground'}`}>{r.current_daily_count || 0}</td>
+                  <td className={`py-2 pr-2 text-right tabular-nums ${r.max_daily_cap > 0 && (r.current_daily_count || 0) >= r.max_daily_cap ? 'text-critical font-bold' : 'text-muted-foreground'}`}>{r.current_daily_count || 0}</td>
                   <td className="py-2 pr-2 text-muted-foreground">{r.delivery_method}</td>
                   <td className="py-2 pr-2 text-muted-foreground text-[10px]">{r.fallback_buyer_name || '—'}</td>
                   <td className="py-2">
