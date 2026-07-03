@@ -1,0 +1,171 @@
+{
+  "name": "CampaignTruthMetric",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    },
+    "vertical": {
+      "type": "string"
+    },
+    "accident_state": {
+      "type": "string"
+    },
+    "buyer_name": {
+      "type": "string"
+    },
+    "supplier_sid": {
+      "type": "string"
+    },
+    "spend_tracked": {
+      "type": "number",
+      "default": 0
+    },
+    "spend_paid": {
+      "type": "number",
+      "default": 0
+    },
+    "web_lead_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "sold_leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "dq_leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "returned_leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "fake_leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "call_count": {
+      "type": "integer",
+      "default": 0
+    },
+    "converted_calls": {
+      "type": "integer",
+      "default": 0
+    },
+    "web_lead_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "call_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "total_booked_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "buyer_collected_cash": {
+      "type": "number",
+      "default": 0
+    },
+    "supplier_payout_accrued": {
+      "type": "number",
+      "default": 0
+    },
+    "supplier_payout_paid": {
+      "type": "number",
+      "default": 0
+    },
+    "true_gross_margin": {
+      "type": "number",
+      "default": 0
+    },
+    "cash_margin": {
+      "type": "number",
+      "default": 0
+    },
+    "booked_roas": {
+      "type": "number",
+      "default": 0
+    },
+    "cash_roas": {
+      "type": "number",
+      "default": 0
+    },
+    "contact_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "buyer_conversion_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "return_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "dq_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "lead_quality_score": {
+      "type": "number",
+      "default": 0
+    },
+    "decision": {
+      "type": "string",
+      "enum": [
+        "SCALE",
+        "WATCH",
+        "CUT",
+        "HOLD",
+        "UNKNOWN"
+      ],
+      "default": "UNKNOWN"
+    },
+    "decision_reason": {
+      "type": "string"
+    },
+    "data_quality": {
+      "type": "string",
+      "enum": [
+        "Complete",
+        "Missing Calls",
+        "Missing Spend",
+        "Missing Buyer Feedback",
+        "Missing Cash",
+        "Incomplete"
+      ],
+      "default": "Incomplete"
+    }
+  },
+  "required": [
+    "date",
+    "campaign_name",
+    "decision"
+  ]
+}

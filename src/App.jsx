@@ -24,6 +24,11 @@ import LeadEconomics from '@/pages/LeadEconomics';
 import Reconciliation from '@/pages/Reconciliation';
 import DataImports from '@/pages/DataImports';
 import SettingsPage from '@/pages/SettingsPage';
+import SmartAdReporting from '@/pages/SmartAdReporting';
+import CreativeIntelligence from '@/pages/CreativeIntelligence';
+import PlatformSpendReconciliation from '@/pages/PlatformSpendReconciliation';
+import AdToLeadQuality from '@/pages/AdToLeadQuality';
+import CutWatchScaleQueue from '@/pages/CutWatchScaleQueue';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -66,6 +71,11 @@ const AuthenticatedApp = () => {
           <Route path="/supplier-ledger" element={<SupplierLedger />} />
           <Route path="/media-gap" element={<MediaGap />} />
           <Route path="/campaign-margin" element={<CampaignMargin />} />
+          <Route path="/smart-ad-reporting" element={<SmartAdReporting />} />
+          <Route path="/creative-intelligence" element={<CreativeIntelligence />} />
+          <Route path="/platform-spend-recon" element={<PlatformSpendReconciliation />} />
+          <Route path="/ad-to-lead-quality" element={<AdToLeadQuality />} />
+          <Route path="/cut-watch-scale" element={<CutWatchScaleQueue />} />
           <Route path="/lead-economics" element={<LeadEconomics />} />
           <Route path="/reconciliation" element={<Reconciliation />} />
           <Route path="/imports" element={<DataImports />} />

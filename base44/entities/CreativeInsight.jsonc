@@ -1,0 +1,126 @@
+{
+  "name": "CreativeInsight",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    },
+    "creative_name": {
+      "type": "string"
+    },
+    "hook": {
+      "type": "string"
+    },
+    "angle": {
+      "type": "string"
+    },
+    "creative_type": {
+      "type": "string",
+      "enum": [
+        "Image",
+        "Video",
+        "Carousel",
+        "Text",
+        "Native",
+        "Search",
+        "YouTube",
+        "Unknown"
+      ]
+    },
+    "spend": {
+      "type": "number",
+      "default": 0
+    },
+    "leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "sold_leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "margin": {
+      "type": "number",
+      "default": 0
+    },
+    "ctr": {
+      "type": "number",
+      "default": 0
+    },
+    "cpl": {
+      "type": "number",
+      "default": 0
+    },
+    "cvr": {
+      "type": "number",
+      "default": 0
+    },
+    "dq_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "return_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "call_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "quality_score": {
+      "type": "number",
+      "default": 0
+    },
+    "fatigue_score": {
+      "type": "number",
+      "default": 0
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "Winner",
+        "Rising",
+        "Needs Iteration",
+        "Fatiguing",
+        "Kill",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "insight_summary": {
+      "type": "string"
+    },
+    "next_test_idea": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date",
+    "ad_name",
+    "verdict"
+  ]
+}

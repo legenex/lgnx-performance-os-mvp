@@ -1,0 +1,60 @@
+{
+  "name": "AdAccount",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_id": {
+      "type": "string"
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Paused",
+        "Closed",
+        "Unknown"
+      ],
+      "default": "Active"
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "connection_status": {
+      "type": "string",
+      "enum": [
+        "Connected",
+        "Disconnected",
+        "Error",
+        "Expired"
+      ],
+      "default": "Disconnected"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "platform",
+    "account_name"
+  ]
+}

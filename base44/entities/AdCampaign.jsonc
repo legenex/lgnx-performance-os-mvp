@@ -1,0 +1,99 @@
+{
+  "name": "AdCampaign",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "campaign_status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Paused",
+        "Completed",
+        "Draft",
+        "Unknown"
+      ],
+      "default": "Active"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "vertical": {
+      "type": "string"
+    },
+    "source_tag": {
+      "type": "string"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "budget_type": {
+      "type": "string",
+      "enum": [
+        "Daily",
+        "Lifetime",
+        "None"
+      ]
+    },
+    "daily_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "lifetime_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "naming_quality": {
+      "type": "string",
+      "enum": [
+        "Clean",
+        "Partial",
+        "Broken",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "mapped_supplier_sid": {
+      "type": "string"
+    },
+    "mapped_vertical": {
+      "type": "string"
+    },
+    "mapped_state": {
+      "type": "string"
+    },
+    "mapped_buyer": {
+      "type": "string"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "platform",
+    "campaign_name"
+  ]
+}

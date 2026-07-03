@@ -9,6 +9,7 @@ import MondayDecomposition from '@/components/command/MondayDecomposition';
 import AlertsPanel from '@/components/command/AlertsPanel';
 import ActionsPanel from '@/components/command/ActionsPanel';
 import ImportChecklist from '@/components/command/ImportChecklist';
+import AdsIntelligencePanel from '@/components/command/AdsIntelligencePanel';
 import { formatMoney, moneyColor } from '@/lib/formatters';
 import { DollarSign, FileText, CreditCard, BarChart3, AlertTriangle, TrendingDown, Shield } from 'lucide-react';
 
@@ -163,6 +164,9 @@ export default function CommandCenter() {
         <AlertsPanel alerts={metrics.criticalAlerts} />
         <ActionsPanel metrics={metrics} />
       </div>
+
+      {/* Ads Intelligence */}
+      <AdsIntelligencePanel />
 
       {/* Import Checklist + Validation */}
       <ImportChecklist />

@@ -20,6 +20,13 @@ const IMPORTERS = [
   { key: 'supplier-stmt', label: 'Supplier Statements CSV', entity: 'SupplierStatement', icon: '📝' },
   { key: 'buyer-feedback', label: 'Buyer Feedback CSV', entity: 'Lead', icon: '💬' },
   { key: 'opening-bal', label: 'Manual Opening Balances CSV', entity: 'APEntry', icon: '⚖️' },
+  // Ad Platform Imports
+  { key: 'meta-ads', label: 'Meta Ads CSV/API', entity: 'AdDailyMetric', icon: '📘' },
+  { key: 'google-ads', label: 'Google Ads CSV/API', entity: 'AdDailyMetric', icon: '🔍' },
+  { key: 'youtube-ads', label: 'YouTube Ads CSV/API', entity: 'AdDailyMetric', icon: '▶️' },
+  { key: 'taboola-ads', label: 'Taboola CSV/API', entity: 'AdDailyMetric', icon: '📰' },
+  { key: 'creative-meta', label: 'Creative / Ad Metadata CSV', entity: 'AdCreative', icon: '🎨' },
+  { key: 'ad-daily-metrics', label: 'Daily Ad Metrics CSV', entity: 'AdDailyMetric', icon: '📊' },
 ];
 
 export default function DataImports() {
@@ -151,6 +158,31 @@ export default function DataImports() {
           <p>• <strong className="text-foreground">Bank Transaction:</strong> by transaction_id → hash(date + amount + description)</p>
           <p>• <strong className="text-foreground">Xero Invoice:</strong> by xero_invoice_id → invoice_number + contact</p>
           <p>• <strong className="text-foreground">Call:</strong> by call_id → hash(timestamp + caller + campaign)</p>
+          <p>• <strong className="text-foreground">Ad Daily Metric:</strong> by platform + date + campaign_id/adset_id/ad_id</p>
+          <p>• <strong className="text-foreground">Ad Creative:</strong> by platform + ad_id → creative_id</p>
+          <p>• <strong className="text-foreground">Ad Campaign:</strong> by platform + campaign_id</p>
+        </div>
+      </SectionPanel>
+
+      {/* Ad Import Pipeline */}
+      <SectionPanel title="Ad Import Pipeline" subtitle="Column mapping, preview, validation, failed row report">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-muted-foreground">
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">Column Mapping</p>
+            <p>Auto-detect standard columns (date, campaign, spend, clicks, leads). Map custom columns via the settings page naming rules.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">Preview & Validation</p>
+            <p>First 5 rows shown before commit. Invalid rows (missing date/platform/campaign) flagged and skipped.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">Deduplication</p>
+            <p>By platform + date + campaign_id/adset_id/ad_id. Existing records updated, not duplicated.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">Failed Row Report</p>
+            <p>Failed rows logged in ImportBatch with reason. Download rejected rows as CSV from import history.</p>
+          </div>
         </div>
       </SectionPanel>
     </div>

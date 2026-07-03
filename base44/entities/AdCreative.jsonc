@@ -1,0 +1,115 @@
+{
+  "name": "AdCreative",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_id": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_id": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    },
+    "creative_id": {
+      "type": "string"
+    },
+    "creative_name": {
+      "type": "string"
+    },
+    "creative_type": {
+      "type": "string",
+      "enum": [
+        "Image",
+        "Video",
+        "Carousel",
+        "Text",
+        "Native",
+        "Search",
+        "YouTube",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "hook": {
+      "type": "string"
+    },
+    "angle": {
+      "type": "string"
+    },
+    "headline": {
+      "type": "string"
+    },
+    "primary_text": {
+      "type": "string"
+    },
+    "landing_page_url": {
+      "type": "string"
+    },
+    "thumbnail_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Paused",
+        "In Review",
+        "Disapproved",
+        "Unknown"
+      ],
+      "default": "Active"
+    },
+    "compliance_risk": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "fatigue_status": {
+      "type": "string",
+      "enum": [
+        "Fresh",
+        "Stable",
+        "Fatiguing",
+        "Burned",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "platform",
+    "ad_name"
+  ]
+}

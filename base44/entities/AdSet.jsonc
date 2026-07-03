@@ -1,0 +1,68 @@
+{
+  "name": "AdSet",
+  "type": "object",
+  "properties": {
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_id": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "adset_status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Paused",
+        "Completed",
+        "Unknown"
+      ],
+      "default": "Active"
+    },
+    "targeting_summary": {
+      "type": "string"
+    },
+    "geo_states": {
+      "type": "string"
+    },
+    "vertical": {
+      "type": "string"
+    },
+    "optimization_event": {
+      "type": "string"
+    },
+    "daily_budget": {
+      "type": "number",
+      "default": 0
+    },
+    "bid_strategy": {
+      "type": "string"
+    },
+    "last_synced_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "platform",
+    "adset_name"
+  ]
+}

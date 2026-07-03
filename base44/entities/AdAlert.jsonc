@@ -1,0 +1,67 @@
+{
+  "name": "AdAlert",
+  "type": "object",
+  "properties": {
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Critical",
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "alert_type": {
+      "type": "string",
+      "enum": [
+        "Spend Spike",
+        "Margin Drop",
+        "Lead Quality Drop",
+        "Creative Fatigue",
+        "Missing Calls",
+        "Missing Buyer Feedback",
+        "Tracking Broken",
+        "Cash Gap",
+        "Naming Broken",
+        "Platform Discrepancy"
+      ]
+    },
+    "platform": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Resolved",
+        "Ignored"
+      ],
+      "default": "Open"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "severity",
+    "alert_type",
+    "message",
+    "status"
+  ]
+}

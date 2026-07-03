@@ -1,0 +1,46 @@
+{
+  "name": "NamingRule",
+  "type": "object",
+  "properties": {
+    "rule_name": {
+      "type": "string"
+    },
+    "pattern": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "extracts_vertical": {
+      "type": "boolean",
+      "default": false
+    },
+    "extracts_state": {
+      "type": "boolean",
+      "default": false
+    },
+    "extracts_supplier": {
+      "type": "boolean",
+      "default": false
+    },
+    "extracts_buyer": {
+      "type": "boolean",
+      "default": false
+    },
+    "extracts_offer": {
+      "type": "boolean",
+      "default": false
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_name",
+    "pattern"
+  ]
+}

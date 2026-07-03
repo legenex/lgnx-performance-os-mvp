@@ -1,0 +1,121 @@
+{
+  "name": "AdDailyMetric",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta",
+        "Google",
+        "YouTube",
+        "Taboola",
+        "Other"
+      ]
+    },
+    "account_name": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": "string"
+    },
+    "campaign_name": {
+      "type": "string"
+    },
+    "adset_id": {
+      "type": "string"
+    },
+    "adset_name": {
+      "type": "string"
+    },
+    "ad_id": {
+      "type": "string"
+    },
+    "ad_name": {
+      "type": "string"
+    },
+    "spend": {
+      "type": "number",
+      "default": 0
+    },
+    "impressions": {
+      "type": "integer",
+      "default": 0
+    },
+    "clicks": {
+      "type": "integer",
+      "default": 0
+    },
+    "outbound_clicks": {
+      "type": "integer",
+      "default": 0
+    },
+    "ctr": {
+      "type": "number",
+      "default": 0
+    },
+    "cpc": {
+      "type": "number",
+      "default": 0
+    },
+    "cpm": {
+      "type": "number",
+      "default": 0
+    },
+    "leads": {
+      "type": "integer",
+      "default": 0
+    },
+    "platform_conversions": {
+      "type": "integer",
+      "default": 0
+    },
+    "reported_cpl": {
+      "type": "number",
+      "default": 0
+    },
+    "video_views": {
+      "type": "integer",
+      "default": 0
+    },
+    "thumbstop_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "hook_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "hold_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "lp_views": {
+      "type": "integer",
+      "default": 0
+    },
+    "landing_page_cvr": {
+      "type": "number",
+      "default": 0
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "API",
+        "CSV",
+        "Manual"
+      ],
+      "default": "CSV"
+    },
+    "import_batch_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "date",
+    "platform"
+  ]
+}
