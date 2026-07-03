@@ -58,12 +58,12 @@ export default function AdsIntelligencePanel() {
     finally { setLoading(false); }
   }
 
-  if (loading) return <div className="rounded-lg border border-border p-4 animate-pulse" style={{ background: '#14171C', height: '200px' }} />;
+  if (loading) return <div className="rounded-lg border border-border p-4 animate-pulse" style={{ background: '#1c2128', height: '200px' }} />;
 
   if (!data) return null;
 
   return (
-    <div className="rounded-lg border border-border p-4" style={{ background: '#14171C' }}>
+    <div className="rounded-lg border border-border p-4" style={{ background: '#1c2128' }}>
       <div className="flex items-center justify-between mb-3">
         <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Ads Intelligence</h3>
         <Link to="/smart-ad-reporting" className="text-[10px] text-[#E4262C] hover:underline">View all →</Link>
@@ -82,7 +82,7 @@ export default function AdsIntelligencePanel() {
       {data.criticalAlerts.length > 0 && (
         <div className="space-y-1.5">
           {data.criticalAlerts.slice(0, 3).map((a, i) => (
-            <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+            <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#22272e' }}>
               <AlertTriangle className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${a.severity === 'Critical' ? 'text-red-400' : 'text-orange-400'}`} />
               <div className="flex-1">
                 <p className="text-[11px] text-foreground">{a.message}</p>

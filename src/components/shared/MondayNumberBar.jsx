@@ -67,14 +67,14 @@ export default function MondayNumberBar() {
 
   if (loading) {
     return (
-      <div className="h-12 border-b border-border flex items-center px-6" style={{ background: '#0F1115' }}>
+      <div className="h-12 border-b border-border flex items-center px-6" style={{ background: '#1a1d21' }}>
         <div className="w-4 h-4 border-2 border-muted-foreground/30 border-t-muted-foreground rounded-full animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="h-12 border-b border-border flex items-center justify-between px-6" style={{ background: '#0F1115' }}>
+    <div className="h-12 border-b border-border flex items-center justify-between px-6" style={{ background: '#1a1d21' }}>
       <div className="flex items-center gap-6">
         {/* Monday Number */}
         <div className="flex items-center gap-2">

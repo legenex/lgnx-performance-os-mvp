@@ -71,7 +71,7 @@ export default function TestLeadSimulator({ routingRules, buyers }) {
   }
 
   return (
-    <div className="rounded-lg border border-border p-4" style={{ background: '#14171C' }}>
+    <div className="rounded-lg border border-border p-4" style={{ background: '#1c2128' }}>
       <h3 className="text-sm font-semibold mb-3 flex items-center gap-2">
         <Play className="w-4 h-4 text-[#E4262C]" />
         Test Lead Simulator

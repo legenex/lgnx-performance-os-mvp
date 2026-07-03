@@ -119,7 +119,7 @@ export default function GatewayCommand() {
               {criticalAlerts.map((a, i) => {
                 const Icon = a.icon;
                 return (
-                  <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                  <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#22272e' }}>
                     <Icon className={`w-4 h-4 mt-0.5 ${a.severity === 'Critical' ? 'text-red-400' : a.severity === 'High' ? 'text-orange-400' : 'text-yellow-400'}`} />
                     <div className="flex-1">
                       <p className="text-xs text-foreground">{a.msg}</p>
@@ -138,7 +138,7 @@ export default function GatewayCommand() {
             {actions.map((a, i) => {
               const Icon = a.icon;
               return (
-                <Link key={i} to={a.path} className="flex items-center justify-between p-2 rounded hover:bg-white/5 transition-colors" style={{ background: '#1A1E24' }}>
+                <Link key={i} to={a.path} className="flex items-center justify-between p-2 rounded hover:bg-white/5 transition-colors" style={{ background: '#22272e' }}>
                   <div className="flex items-center gap-2">
                     <Icon className="w-4 h-4 text-muted-foreground" />
                     <span className="text-xs text-foreground">{a.label}</span>
@@ -189,7 +189,7 @@ export default function GatewayCommand() {
 
 function Card({ title, value, color, icon: Icon, pill }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#14171C' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}

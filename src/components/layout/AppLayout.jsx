@@ -3,22 +3,21 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { 
   LayoutDashboard, Landmark, RefreshCw, FileText, CreditCard, 
   Users, BarChart3, Target, TrendingUp, GitCompare, Upload, 
-  Settings, ChevronLeft, ChevronRight, AlertTriangle, LogOut,
+  Settings,
   Megaphone, Palette, GitCompareArrows, ClipboardCheck, Scissors,
-  Radio, Inbox, Route, Send, Activity, Shield, Zap, AlertCircle
+  Radio, Inbox, Route, Send, Activity, Shield, Zap, AlertCircle,
+  ChevronDown, X
 } from 'lucide-react';
-import { base44 } from '@/api/base44Client';
 import MondayNumberBar from '@/components/shared/MondayNumberBar';
 
-const NAV_SECTIONS = [
-  {
-    label: 'Overview',
-    items: [
-      { label: 'Command Center', path: '/', icon: LayoutDashboard },
-    ]
-  },
+const OVERVIEW_ITEMS = [
+  { label: 'Command Center', path: '/', icon: LayoutDashboard },
+];
+
+const NAV_GROUPS = [
   {
     label: 'Cash & Books',
+    icon: Landmark,
     items: [
       { label: 'Cash & Banking', path: '/cash', icon: Landmark },
       { label: 'Xero', path: '/xero', icon: RefreshCw },
@@ -30,6 +29,7 @@ const NAV_SECTIONS = [
   },
   {
     label: 'Performance / Ads',
+    icon: Megaphone,
     items: [
       { label: 'Smart Ad Reporting', path: '/smart-ad-reporting', icon: Megaphone },
       { label: 'Creative Intelligence', path: '/creative-intelligence', icon: Palette },
@@ -43,6 +43,7 @@ const NAV_SECTIONS = [
   },
   {
     label: 'Lead Gateway',
+    icon: Radio,
     items: [
       { label: 'Gateway Command', path: '/gateway/command', icon: Radio },
       { label: 'Lead Intake Monitor', path: '/gateway/lead-intake', icon: Inbox },
@@ -57,6 +58,7 @@ const NAV_SECTIONS = [
   },
   {
     label: 'System',
+    icon: Settings,
     items: [
       { label: 'Data Imports', path: '/imports', icon: Upload },
       { label: 'Settings', path: '/settings', icon: Settings },
@@ -65,83 +67,123 @@ const NAV_SECTIONS = [
 ];
 
 export default function AppLayout() {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsedGroups, setCollapsedGroups] = useState({});
   const location = useLocation();
 
+  const isActive = (path) => location.pathname === path;
+
+  const toggleGroup = (label) => {
+    setCollapsedGroups(prev => ({ ...prev, [label]: !prev[label] }));
+  };
+
+  const collapseAll = () => {
+    const all = {};
+    NAV_GROUPS.forEach(g => { all[g.label] = true; });
+    setCollapsedGroups(all);
+  };
+
   return (
-    <div className="flex h-screen overflow-hidden" style={{ background: '#0B0D10' }}>
+    <div className="flex h-screen overflow-hidden" style={{ background: '#161a1f' }}>
       {/* Sidebar */}
       <aside 
-        className={`flex flex-col border-r border-border transition-all duration-200 ${collapsed ? 'w-16' : 'w-56'}`}
-        style={{ background: '#0F1115' }}
+        className="flex flex-col border-r w-60 flex-shrink-0"
+        style={{ background: '#1a1d21', borderColor: '#32383e' }}
       >
         {/* Logo */}
-        <div className="flex items-center h-14 px-4 border-b border-border">
-          {!collapsed && (
-            <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded bg-[#E4262C] flex items-center justify-center">
-                <span className="text-white font-bold text-xs">L</span>
-              </div>
-              <div>
-                <span className="text-sm font-semibold text-foreground tracking-tight">Legenex</span>
-                <span className="text-[10px] text-muted-foreground block -mt-0.5">PerformanceOS</span>
-              </div>
-            </div>
-          )}
-          {collapsed && (
-            <div className="w-7 h-7 rounded bg-[#E4262C] flex items-center justify-center mx-auto">
+        <div className="flex items-center h-14 px-4 border-b" style={{ borderColor: '#32383e' }}>
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded flex items-center justify-center" style={{ background: '#ef4444' }}>
               <span className="text-white font-bold text-xs">L</span>
             </div>
-          )}
+            <div>
+              <span className="text-sm font-semibold text-white tracking-tight">LEGENEX</span>
+              <span className="text-[10px] block -mt-0.5" style={{ color: '#8b949e' }}>PerformanceOS</span>
+            </div>
+          </div>
         </div>
 
         {/* Nav */}
         <nav className="flex-1 py-2 overflow-y-auto">
-          {NAV_SECTIONS.map((section) => (
-            <div key={section.label} className="mb-1">
-              {!collapsed && (
-                <p className="px-4 py-1 text-[9px] uppercase tracking-widest text-muted-foreground/50 font-semibold">
-                  {section.label}
-                </p>
-              )}
-              {section.items.map((item) => {
-                const active = location.pathname === item.path;
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className={`flex items-center gap-3 px-4 py-1.5 mx-2 rounded-md text-xs transition-colors ${
-                      active 
-                        ? 'bg-[#E4262C]/10 text-[#E4262C]' 
-                        : 'text-muted-foreground hover:text-foreground hover:bg-white/5'
-                    }`}
-                    title={collapsed ? item.label : undefined}
-                  >
-                    <Icon className="w-4 h-4 flex-shrink-0" />
-                    {!collapsed && <span className="truncate">{item.label}</span>}
-                  </Link>
-                );
-              })}
-            </div>
-          ))}
+          {/* Standalone Overview */}
+          {OVERVIEW_ITEMS.map((item) => {
+            const active = isActive(item.path);
+            const Icon = item.icon;
+            return (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="flex items-center gap-3 px-3 py-2 mx-2 rounded-md text-xs font-medium transition-colors relative"
+                style={active ? { background: '#3a2529', color: '#ffffff' } : { color: '#adb5bd' }}
+              >
+                {active && <div className="absolute left-0 top-0 bottom-0 w-[2px] rounded-r" style={{ background: '#ff4d4f' }} />}
+                <Icon className="w-4 h-4 flex-shrink-0" />
+                <span className="truncate">{item.label}</span>
+              </Link>
+            );
+          })}
+
+          {/* Collapsible Groups */}
+          {NAV_GROUPS.map((group) => {
+            const isCollapsed = collapsedGroups[group.label];
+            const GroupIcon = group.icon;
+            return (
+              <div key={group.label} className="mb-0.5">
+                <button
+                  onClick={() => toggleGroup(group.label)}
+                  className="flex items-center gap-2 w-full px-3 py-2 mx-2 rounded-md text-xs font-medium transition-colors hover:bg-white/5"
+                  style={{ color: '#ffffff' }}
+                >
+                  <GroupIcon className="w-4 h-4 flex-shrink-0" />
+                  <span className="truncate flex-1 text-left">{group.label}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform flex-shrink-0 ${isCollapsed ? '' : 'rotate-180'}`} />
+                </button>
+                {!isCollapsed && (
+                  <div className="mt-0.5">
+                    {group.items.map((item) => {
+                      const active = isActive(item.path);
+                      const Icon = item.icon;
+                      return (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className="flex items-center gap-2.5 px-3 py-1.5 mx-2 rounded-md text-xs transition-colors relative"
+                          style={active ? { background: '#3a2529', color: '#ffffff' } : { color: '#adb5bd' }}
+                          onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#ffffff'; }}
+                          onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#adb5bd'; }}
+                        >
+                          {active && <div className="absolute left-0 top-0 bottom-0 w-[2px] rounded-r" style={{ background: '#ff4d4f' }} />}
+                          <Icon className="w-3.5 h-3.5 flex-shrink-0" />
+                          <span className="truncate">{item.label}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </nav>
 
-        {/* Collapse toggle */}
-        <div className="border-t border-border p-2">
+        {/* Footer */}
+        <div className="border-t p-2" style={{ borderColor: '#32383e' }}>
           <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="flex items-center justify-center w-full py-1.5 rounded text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+            onClick={collapseAll}
+            className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded text-xs transition-colors border"
+            style={{ color: '#adb5bd', borderColor: '#32383e' }}
+            onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}
+            onMouseLeave={e => { e.currentTarget.style.color = '#adb5bd'; e.currentTarget.style.background = 'transparent'; }}
           >
-            {collapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            <X className="w-3 h-3" />
+            Collapse All
           </button>
+          <p className="text-center text-[10px] mt-1.5" style={{ color: '#8b949e' }}>v1.0.0</p>
         </div>
       </aside>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <MondayNumberBar />
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-6" style={{ background: '#161a1f' }}>
           <Outlet />
         </main>
       </div>

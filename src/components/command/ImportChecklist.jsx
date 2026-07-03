@@ -69,7 +69,7 @@ export default function ImportChecklist() {
       </SectionPanel>
 
       <SectionPanel title="MVP Validation" subtitle={trustworthy ? 'Data trustworthy' : 'Do not trust yet'}>
-        <div className="flex items-center gap-3 mb-4 p-3 rounded" style={{ background: '#1A1E24' }}>
+        <div className="flex items-center gap-3 mb-4 p-3 rounded" style={{ background: '#22272e' }}>
           {trustworthy ? (
             <>
               <Shield className="w-5 h-5 text-emerald-400" />

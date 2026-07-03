@@ -88,7 +88,7 @@ export default function BuyerDeliveryLogs() {
       {/* Buyer Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {buyerSummary.map((b, i) => (
-          <div key={i} className="rounded-lg border border-border p-3" style={{ background: '#14171C' }}>
+          <div key={i} className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-semibold">{b.buyer}</span>
               <span className={`text-[9px] px-1.5 py-0.5 rounded ${b.errorRate > 20 ? 'bg-red-500/20 text-red-400' : b.errorRate > 5 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-emerald-500/20 text-emerald-400'}`}>

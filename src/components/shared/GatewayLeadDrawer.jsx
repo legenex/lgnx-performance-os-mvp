@@ -31,8 +31,8 @@ export default function GatewayLeadDrawer({ lead, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex justify-end" style={{ background: 'rgba(0,0,0,0.5)' }} onClick={onClose}>
-      <div className="w-full max-w-2xl h-full overflow-y-auto" style={{ background: '#0F1115' }} onClick={e => e.stopPropagation()}>
-        <div className="sticky top-0 flex items-center justify-between px-5 py-3 border-b border-border z-10" style={{ background: '#0F1115' }}>
+      <div className="w-full max-w-2xl h-full overflow-y-auto" style={{ background: '#1a1d21' }} onClick={e => e.stopPropagation()}>
+        <div className="sticky top-0 flex items-center justify-between px-5 py-3 border-b border-border z-10" style={{ background: '#1a1d21' }}>
           <div>
             <h2 className="text-sm font-bold">Lead {lead.lead_key || lead.gateway_lead_id}</h2>
             <p className="text-[10px] text-muted-foreground">{lead.first_name} {lead.last_name} · {lead.accident_state || lead.geo_state || '—'}</p>
@@ -133,7 +133,7 @@ export default function GatewayLeadDrawer({ lead, onClose }) {
                 <div className="pt-2">
                   <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-2">Delivery Attempts ({deliveryLogs.length})</p>
                   {deliveryLogs.map((d, i) => (
-                    <div key={i} className="p-2 rounded mb-1.5" style={{ background: '#1A1E24' }}>
+                    <div key={i} className="p-2 rounded mb-1.5" style={{ background: '#22272e' }}>
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-medium">{d.buyer_name}</span>
                         <span className={`text-[10px] px-1.5 py-0.5 rounded ${d.status === 'Sold' ? 'bg-emerald-500/20 text-emerald-400' : d.status === 'Failed' || d.status === 'Timeout' ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400'}`}>{d.status}</span>
@@ -163,7 +163,7 @@ export default function GatewayLeadDrawer({ lead, onClose }) {
                   <Field label="IP Address" value={compliance.ip_address || '—'} />
                   <Field label="User Agent" value={compliance.user_agent || '—'} />
                   {compliance.consent_text && (
-                    <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+                    <div className="p-2 rounded" style={{ background: '#22272e' }}>
                       <p className="text-[10px] text-muted-foreground mb-1">Consent Text</p>
                       <p className="text-[10px] text-foreground">{compliance.consent_text}</p>
                     </div>
@@ -178,7 +178,7 @@ export default function GatewayLeadDrawer({ lead, onClose }) {
           {tab === 'events' && (
             <div className="space-y-2">
               {events.length > 0 ? events.map((e, i) => (
-                <div key={i} className="p-2 rounded" style={{ background: '#1A1E24' }}>
+                <div key={i} className="p-2 rounded" style={{ background: '#22272e' }}>
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium">{e.platform} · {e.event_name}</span>
                     <span className={`text-[10px] px-1.5 py-0.5 rounded ${e.status === 'Sent' ? 'bg-emerald-500/20 text-emerald-400' : e.status === 'Failed' ? 'bg-red-500/20 text-red-400' : 'bg-yellow-500/20 text-yellow-400'}`}>{e.status}</span>
@@ -214,7 +214,7 @@ function PayloadBlock({ label, json }) {
     <div>
       <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{label}</p>
       {parsed ? (
-        <pre className="text-[10px] font-mono p-3 rounded overflow-x-auto max-h-60" style={{ background: '#1A1E24' }}>
+        <pre className="text-[10px] font-mono p-3 rounded overflow-x-auto max-h-60" style={{ background: '#22272e' }}>
           {JSON.stringify(parsed, null, 2)}
         </pre>
       ) : (

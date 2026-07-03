@@ -55,7 +55,7 @@ export default function LeadGatewayPanel() {
         {items.map((item, i) => {
           const Icon = item.icon;
           return (
-            <Link key={i} to={item.path} className="flex flex-col p-2 rounded hover:bg-white/5 transition-colors" style={{ background: '#1A1E24' }}>
+            <Link key={i} to={item.path} className="flex flex-col p-2 rounded hover:bg-white/5 transition-colors" style={{ background: '#22272e' }}>
               <div className="flex items-center gap-1.5 mb-1">
                 <Icon className={`w-3.5 h-3.5 ${item.color}`} />
                 <span className="text-[9px] uppercase tracking-wider text-muted-foreground">{item.label}</span>

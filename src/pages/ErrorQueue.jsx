@@ -93,7 +93,7 @@ export default function ErrorQueue() {
       <SectionPanel title="Error Summary" subtitle={`${grouped.length} groups · ${formatNumber(filtered.length)} errors`}>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
           {grouped.map((g, i) => (
-            <div key={i} className="p-3 rounded" style={{ background: '#1A1E24' }}>
+            <div key={i} className="p-3 rounded" style={{ background: '#22272e' }}>
               <div className="flex items-center justify-between mb-1">
                 <span className="text-xs font-medium">{g.category}</span>
                 <StatusBadge status={g.severity} />

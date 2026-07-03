@@ -10,9 +10,9 @@ export default function AdDetailDrawer({ row, onClose }) {
   return (
     <div className="fixed inset-0 z-50 flex justify-end">
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      <div className="relative w-full max-w-xl h-full overflow-y-auto border-l border-border" style={{ background: '#0F1115' }}>
+      <div className="relative w-full max-w-xl h-full overflow-y-auto border-l border-border" style={{ background: '#1a1d21' }}>
         {/* Header */}
-        <div className="sticky top-0 z-10 flex items-center justify-between p-4 border-b border-border" style={{ background: '#0F1115' }}>
+        <div className="sticky top-0 z-10 flex items-center justify-between p-4 border-b border-border" style={{ background: '#1a1d21' }}>
           <div>
             <h2 className="text-sm font-bold text-foreground">{row.campaign_name}</h2>
             <p className="text-[11px] text-muted-foreground mt-0.5">

@@ -214,7 +214,7 @@ export default function CapiEventTracking() {
 
 function CapiCard({ title, value, color, icon: Icon }) {
   return (
-    <div className="rounded-lg border border-border p-3" style={{ background: '#14171C' }}>
+    <div className="rounded-lg border border-border p-3" style={{ background: '#1c2128' }}>
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>
         {Icon && <Icon className="w-3.5 h-3.5 text-muted-foreground" />}

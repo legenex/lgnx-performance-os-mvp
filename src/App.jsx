@@ -44,7 +44,7 @@ const AuthenticatedApp = () => {
 
   if (isLoadingPublicSettings || isLoadingAuth) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center" style={{ background: '#0B0D10' }}>
+      <div className="fixed inset-0 flex items-center justify-center" style={{ background: '#161a1f' }}>
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-[#E4262C] flex items-center justify-center">
             <span className="text-white font-bold text-lg">L</span>

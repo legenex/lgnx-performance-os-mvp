@@ -101,7 +101,7 @@ export default function LeadIntakeMonitor() {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2">
-        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border" style={{ background: '#14171C' }}>
+        <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border" style={{ background: '#1c2128' }}>
           <Search className="w-3.5 h-3.5 text-muted-foreground" />
           <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search lead key, phone, email..." className="bg-transparent text-xs outline-none w-48" />
         </div>

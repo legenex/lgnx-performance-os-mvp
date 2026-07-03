@@ -120,8 +120,8 @@ export default function CommandCenter() {
 
       {/* Monday Number Hero */}
       <div 
-        className="rounded-lg border border-border p-6 cursor-pointer hover:border-[#E4262C]/30 transition-colors"
-        style={{ background: 'linear-gradient(135deg, #14171C 0%, #1A1E24 100%)' }}
+        className="rounded-lg border border-border p-6 cursor-pointer hover:border-[#ef4444]/30 transition-colors"
+        style={{ background: 'linear-gradient(135deg, #1c2128 0%, #22272e 100%)' }}
         onClick={() => setShowDecomp(true)}
       >
         <div className="flex items-center justify-between">

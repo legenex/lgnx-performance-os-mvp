@@ -11,7 +11,7 @@ export default function AlertsPanel({ alerts = [] }) {
       ) : (
         <div className="space-y-2 max-h-64 overflow-y-auto">
           {alerts.slice(0, 10).map((alert, i) => (
-            <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+            <div key={i} className="flex items-start gap-2 p-2 rounded" style={{ background: '#22272e' }}>
               <AlertTriangle className={`w-3.5 h-3.5 mt-0.5 flex-shrink-0 ${
                 alert.severity === 'Critical' ? 'text-red-400' : 'text-orange-400'
               }`} />
