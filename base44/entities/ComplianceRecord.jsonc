@@ -1,0 +1,87 @@
+{
+  "name": "ComplianceRecord",
+  "type": "object",
+  "properties": {
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "trustedform_url": {
+      "type": "string"
+    },
+    "trustedform_present": {
+      "type": "boolean"
+    },
+    "trustedform_status": {
+      "type": "string",
+      "enum": [
+        "Present",
+        "Missing",
+        "Invalid",
+        "Expired",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "jornaya_token": {
+      "type": "string"
+    },
+    "jornaya_status": {
+      "type": "string",
+      "enum": [
+        "Present",
+        "Missing",
+        "Invalid",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "optin_url": {
+      "type": "string"
+    },
+    "consent_text": {
+      "type": "string"
+    },
+    "consent_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "user_agent": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "tcpa_status": {
+      "type": "string",
+      "enum": [
+        "Passed",
+        "Warning",
+        "Failed",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "evidence_summary": {
+      "type": "string"
+    },
+    "compliance_risk": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lead_key"
+  ]
+}

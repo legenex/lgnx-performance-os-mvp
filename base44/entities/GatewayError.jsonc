@@ -1,0 +1,78 @@
+{
+  "name": "GatewayError",
+  "type": "object",
+  "properties": {
+    "error_id": {
+      "type": "string"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Critical",
+        "High",
+        "Medium",
+        "Low"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Validation",
+        "Routing",
+        "Delivery",
+        "Compliance",
+        "CAPI",
+        "LeadByte",
+        "Buyer",
+        "Supplier",
+        "Duplicate",
+        "Unknown"
+      ]
+    },
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "leadbyte_id": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    },
+    "root_cause": {
+      "type": "string"
+    },
+    "recommended_action": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "In Progress",
+        "Resolved",
+        "Ignored"
+      ],
+      "default": "Open"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "severity",
+    "category",
+    "message",
+    "status"
+  ]
+}

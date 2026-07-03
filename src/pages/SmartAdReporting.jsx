@@ -14,20 +14,55 @@ export default function SmartAdReporting() {
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({});
   const [selectedRow, setSelectedRow] = useState(null);
+  const [gatewayLeads, setGatewayLeads] = useState([]);
+  const [capiEvents, setCapiEvents] = useState([]);
 
   useEffect(() => { loadData(); }, []);
 
   async function loadData() {
     try {
-      const [truth, alerts] = await Promise.all([
+      const [truth, alerts, gwLeads, capi] = await Promise.all([
         base44.entities.CampaignTruthMetric.list(undefined, 500),
         base44.entities.AdAlert.filter({ status: 'Open' }),
+        base44.entities.GatewayLead.list(undefined, 500),
+        base44.entities.EventTrackingLog.list(undefined, 500),
       ]);
       setTruthMetrics(truth);
       setAdAlerts(alerts);
+      setGatewayLeads(gwLeads);
+      setCapiEvents(capi);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   }
+
+  const gatewayStatusMap = useMemo(() => {
+    const map = {};
+    gatewayLeads.forEach(l => {
+      const camp = l.utm_campaign;
+      if (!camp) return;
+      if (!map[camp]) map[camp] = { leads: 0, sold: 0, capiSoldEvents: 0 };
+      map[camp].leads++;
+      if (l.lead_status === 'Sold') map[camp].sold++;
+      const capiForLead = capiEvents.filter(e => e.gateway_lead_id === l.gateway_lead_id && e.event_name === 'Sold_Lead' && e.status === 'Sent');
+      if (capiForLead.length > 0) map[camp].capiSoldEvents++;
+    });
+    Object.keys(map).forEach(camp => {
+      const g = map[camp];
+      if (g.sold > 0 && g.capiSoldEvents === 0) g.status = 'CAPI Missing';
+      else g.status = 'OK';
+    });
+    return map;
+  }, [gatewayLeads, capiEvents]);
+
+  const attributionMissing = useMemo(() => {
+    const adCampaigns = new Set(truthMetrics.map(t => t.campaign_name).filter(Boolean));
+    return Object.keys(gatewayStatusMap).filter(c => !adCampaigns.has(c));
+  }, [gatewayStatusMap, truthMetrics]);
+
+  const trackingBroken = useMemo(() => {
+    const gwCampaigns = new Set(gatewayLeads.map(l => l.utm_campaign).filter(Boolean));
+    return truthMetrics.filter(t => t.campaign_name && !gwCampaigns.has(t.campaign_name) && (t.spend_tracked || 0) > 0).map(t => t.campaign_name);
+  }, [truthMetrics, gatewayLeads]);
 
   const accounts = useMemo(() => [...new Set(truthMetrics.map(t => t.account_name).filter(Boolean))], [truthMetrics]);
   const campaigns = useMemo(() => [...new Set(truthMetrics.map(t => t.campaign_name).filter(Boolean))], [truthMetrics]);
@@ -152,6 +187,26 @@ export default function SmartAdReporting() {
         </div>
       )}
 
+      {trackingBroken.length > 0 && (
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
+          <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs text-red-300 font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{trackingBroken.slice(0, 3).join(', ')}</p>
+          </div>
+        </div>
+      )}
+
+      {attributionMissing.length > 0 && (
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-orange-500/10 border border-orange-500/20">
+          <AlertTriangle className="w-4 h-4 text-orange-400 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs text-orange-300 font-medium">{attributionMissing.length} gateway campaign(s) missing from ad metrics — Attribution Missing</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{attributionMissing.slice(0, 3).join(', ')}</p>
+          </div>
+        </div>
+      )}
+
       {/* Top Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         <Card title="Tracked Spend" value={formatMoney(cards.tracked)} pill="BOOKED" />
@@ -198,6 +253,7 @@ export default function SmartAdReporting() {
                 <th className="pb-2 pr-2 text-right">C ROAS</th>
                 <th className="pb-2 pr-2 text-right">Qual</th>
                 <th className="pb-2 pr-2">Data</th>
+                <th className="pb-2 pr-2">Gateway</th>
                 <th className="pb-2 pr-2">Decision</th>
               </tr>
             </thead>
@@ -226,6 +282,7 @@ export default function SmartAdReporting() {
                   <td className="py-1.5 pr-2 text-right tabular-nums">{r.cash_roas !== null ? `${r.cash_roas.toFixed(2)}x` : '—'}</td>
                   <td className="py-1.5 pr-2 text-right tabular-nums">{r.quality_score > 0 ? r.quality_score.toFixed(1) : '—'}</td>
                   <td className="py-1.5 pr-2"><DataQualityBadge quality={r.data_quality} /></td>
+                  <td className="py-1.5 pr-2"><GatewayStatusBadge status={gatewayStatusMap[r.campaign_name]?.status} broken={trackingBroken.includes(r.campaign_name)} /></td>
                   <td className="py-1.5 pr-2"><StatusBadge status={r.decision} /></td>
                 </tr>
               ))}
@@ -266,6 +323,19 @@ function DataQualityBadge({ quality }) {
       {quality === 'Complete' ? '✓' : '⚠'} {quality}
     </span>
   );
+}
+
+function GatewayStatusBadge({ status, broken }) {
+  if (broken) {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-red-400">⚠ Tracking Broken</span>;
+  }
+  if (status === 'CAPI Missing') {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-orange-400">⚠ CAPI Missing</span>;
+  }
+  if (status === 'OK') {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-emerald-400">✓ OK</span>;
+  }
+  return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-gray-500/10 text-gray-400">— No Gateway</span>;
 }
 
 function calcQualityScore(g, returnRate, buyerConvRate) {

@@ -13,27 +13,57 @@ export default function CampaignMargin() {
   const [leads, setLeads] = useState([]);
   const [calls, setCalls] = useState([]);
   const [adSpend, setAdSpend] = useState([]);
+  const [gatewayLeads, setGatewayLeads] = useState([]);
+  const [capiEvents, setCapiEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => { loadData(); }, []);
 
   async function loadData() {
     try {
-      const [truth, lds, cls, ads] = await Promise.all([
+      const [truth, lds, cls, ads, gwLeads, capi] = await Promise.all([
         base44.entities.CampaignTruthMetric.list(undefined, 500),
         base44.entities.Lead.list(undefined, 500),
         base44.entities.Call.list(undefined, 500),
         base44.entities.AdSpend.list(undefined, 500),
+        base44.entities.GatewayLead.list(undefined, 500),
+        base44.entities.EventTrackingLog.list(undefined, 500),
       ]);
       setTruthMetrics(truth);
       setLeads(lds);
       setCalls(cls);
       setAdSpend(ads.filter(a => !a.superseded));
+      setGatewayLeads(gwLeads);
+      setCapiEvents(capi);
     } catch (err) { console.error(err); }
     finally { setLoading(false); }
   }
 
   const hasCallData = calls.length > 0;
+
+  const gatewayStatusMap = useMemo(() => {
+    const map = {};
+    gatewayLeads.forEach(l => {
+      const camp = l.utm_campaign;
+      if (!camp) return;
+      if (!map[camp]) map[camp] = { leads: 0, sold: 0, capiSoldEvents: 0 };
+      map[camp].leads++;
+      if (l.lead_status === 'Sold') map[camp].sold++;
+      const capiForLead = capiEvents.filter(e => e.gateway_lead_id === l.gateway_lead_id && e.event_name === 'Sold_Lead' && e.status === 'Sent');
+      if (capiForLead.length > 0) map[camp].capiSoldEvents++;
+    });
+    Object.keys(map).forEach(camp => {
+      const g = map[camp];
+      if (g.sold > 0 && g.capiSoldEvents === 0) g.status = 'CAPI Missing';
+      else g.status = 'OK';
+    });
+    return map;
+  }, [gatewayLeads, capiEvents]);
+
+  const trackingBroken = useMemo(() => {
+    const gwCampaigns = new Set(gatewayLeads.map(l => l.utm_campaign).filter(Boolean));
+    return truthMetrics.filter(t => t.campaign_name && !gwCampaigns.has(t.campaign_name) && (t.spend_tracked || 0) > 0).map(t => t.campaign_name);
+  }, [truthMetrics, gatewayLeads]);
 
   // If CampaignTruthMetric data exists, use it as the financial truth view
   const truthData = useMemo(() => {
@@ -160,6 +190,16 @@ export default function CampaignMargin() {
 
       <WarningBanner>Campaign margin is incomplete without calls. Do not rely only on masterview profit. True margin = web lead revenue + call revenue − tracked spend − supplier payout.</WarningBanner>
 
+      {trackingBroken.length > 0 && (
+        <div className="flex items-start gap-2 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/20">
+          <AlertTriangle className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+          <div>
+            <p className="text-xs text-red-300 font-medium">{trackingBroken.length} campaign(s) with ad spend but no gateway leads — Tracking Broken</p>
+            <p className="text-[11px] text-muted-foreground mt-0.5">{trackingBroken.slice(0, 3).join(', ')}</p>
+          </div>
+        </div>
+      )}
+
       {truthData ? (
         <SectionPanel title="Campaign Truth (Financial Truth View)" subtitle={`${truthData.length} campaigns · joined to cash, calls, buyer feedback`}>
           <div className="overflow-x-auto">
@@ -180,6 +220,7 @@ export default function CampaignMargin() {
                   <th className="pb-2 pr-3 text-right">Cash Margin</th>
                   <th className="pb-2 pr-3 text-right">B ROAS</th>
                   <th className="pb-2 pr-3 text-right">C ROAS</th>
+                  <th className="pb-2 pr-3">Gateway</th>
                   <th className="pb-2 pr-3">Decision</th>
                   <th className="pb-2">Reason</th>
                 </tr>
@@ -203,6 +244,7 @@ export default function CampaignMargin() {
                     <td className={`py-2 pr-3 text-right tabular-nums font-bold ${r.cash_margin !== null ? moneyColor(r.cash_margin) : 'text-muted-foreground/40'}`}>{r.cash_margin !== null ? formatMoney(r.cash_margin) : '?'}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{r.booked_roas > 0 ? `${r.booked_roas.toFixed(2)}x` : '—'}</td>
                     <td className="py-2 pr-3 text-right tabular-nums">{r.cash_roas !== null ? `${r.cash_roas.toFixed(2)}x` : '—'}</td>
+                    <td className="py-2 pr-3"><GatewayStatusBadge status={gatewayStatusMap[r.campaign]?.status} broken={trackingBroken.includes(r.campaign)} /></td>
                     <td className="py-2 pr-3"><StatusBadge status={r.decision} /></td>
                     <td className="py-2 text-[10px] text-muted-foreground max-w-32 truncate">{r.reason}</td>
                   </tr>
@@ -267,4 +309,17 @@ function DataQualityBadge({ quality }) {
       {quality === 'Complete' ? '✓' : '⚠'} {quality}
     </span>
   );
+}
+
+function GatewayStatusBadge({ status, broken }) {
+  if (broken) {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-red-500/10 text-red-400">⚠ Tracking Broken</span>;
+  }
+  if (status === 'CAPI Missing') {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-orange-500/10 text-orange-400">⚠ CAPI Missing</span>;
+  }
+  if (status === 'OK') {
+    return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-emerald-500/10 text-emerald-400">✓ OK</span>;
+  }
+  return <span className="text-[9px] px-1.5 py-0.5 rounded font-medium bg-gray-500/10 text-gray-400">—</span>;
 }

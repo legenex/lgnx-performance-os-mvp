@@ -1,0 +1,226 @@
+{
+  "name": "GatewayLead",
+  "type": "object",
+  "properties": {
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "leadbyte_id": {
+      "type": "string"
+    },
+    "leadshook_id": {
+      "type": "string"
+    },
+    "tc_id": {
+      "type": "string"
+    },
+    "source_system": {
+      "type": "string",
+      "enum": [
+        "Leadshook",
+        "Lead Gateway",
+        "API",
+        "Supplier Post",
+        "Manual",
+        "Unknown"
+      ]
+    },
+    "received_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "lead_vertical": {
+      "type": "string",
+      "enum": [
+        "MVA",
+        "WC",
+        "Other"
+      ]
+    },
+    "lead_status": {
+      "type": "string",
+      "enum": [
+        "Received",
+        "Validated",
+        "Rejected",
+        "Posted",
+        "Sold",
+        "Unsold",
+        "Disqualified",
+        "Returned",
+        "Fake",
+        "Error"
+      ]
+    },
+    "validation_status": {
+      "type": "string",
+      "enum": [
+        "Passed",
+        "Failed",
+        "Warning",
+        "Not Run"
+      ]
+    },
+    "routing_status": {
+      "type": "string",
+      "enum": [
+        "Not Routed",
+        "Routed",
+        "Delivery Failed",
+        "Partial",
+        "Complete"
+      ]
+    },
+    "buyer_name": {
+      "type": "string"
+    },
+    "buyer_id": {
+      "type": "string"
+    },
+    "supplier_sid": {
+      "type": "string"
+    },
+    "supplier_ssid": {
+      "type": "string"
+    },
+    "supplier_source": {
+      "type": "string"
+    },
+    "supplier_brand": {
+      "type": "string"
+    },
+    "utm_source": {
+      "type": "string"
+    },
+    "utm_campaign": {
+      "type": "string"
+    },
+    "utm_medium": {
+      "type": "string"
+    },
+    "utm_content": {
+      "type": "string"
+    },
+    "utm_ad_label": {
+      "type": "string"
+    },
+    "accident_state": {
+      "type": "string"
+    },
+    "geo_state": {
+      "type": "string"
+    },
+    "zip_code": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "injured": {
+      "type": "string"
+    },
+    "injury_type": {
+      "type": "string"
+    },
+    "treatment": {
+      "type": "string"
+    },
+    "treatment_type": {
+      "type": "string"
+    },
+    "treatment_time": {
+      "type": "string"
+    },
+    "fault": {
+      "type": "string"
+    },
+    "attorney": {
+      "type": "string"
+    },
+    "insurance": {
+      "type": "string"
+    },
+    "police_report": {
+      "type": "string"
+    },
+    "accident_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "incident_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "trustedform_url": {
+      "type": "string"
+    },
+    "trustedform_present": {
+      "type": "boolean"
+    },
+    "jornaya_token": {
+      "type": "string"
+    },
+    "optin_url": {
+      "type": "string"
+    },
+    "user_agent": {
+      "type": "string"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "consent_text": {
+      "type": "string"
+    },
+    "validation_errors": {
+      "type": "string"
+    },
+    "rejection_reason": {
+      "type": "string"
+    },
+    "buyer_response_summary": {
+      "type": "string"
+    },
+    "lead_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "lead_net_revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "supplier_payout": {
+      "type": "number",
+      "default": 0
+    },
+    "source_payload_json": {
+      "type": "string"
+    },
+    "normalized_payload_json": {
+      "type": "string"
+    },
+    "created_lead_record": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "lead_status"
+  ]
+}

@@ -5,6 +5,7 @@ import StatusBadge from '@/components/shared/StatusBadge';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Link } from 'react-router-dom';
 import { Settings, Users, FileText, Tag, Shield } from 'lucide-react';
 
 export default function SettingsPage() {
@@ -53,6 +54,7 @@ export default function SettingsPage() {
         <TabsTrigger value="ad-accounts" className="text-xs">Ad Accounts</TabsTrigger>
         <TabsTrigger value="naming" className="text-xs">Naming Rules</TabsTrigger>
         <TabsTrigger value="thresholds" className="text-xs">Decision Thresholds</TabsTrigger>
+        <TabsTrigger value="gateway" className="text-xs">Gateway Settings</TabsTrigger>
         <TabsTrigger value="xero" className="text-xs">Xero Connection</TabsTrigger>
         <TabsTrigger value="roles" className="text-xs">Roles</TabsTrigger>
       </TabsList>
@@ -234,6 +236,99 @@ export default function SettingsPage() {
 
         <TabsContent value="thresholds">
           <ThresholdsPanel />
+        </TabsContent>
+
+        <TabsContent value="gateway">
+          <SectionPanel title="Lead Gateway Configuration" subtitle="Endpoint, validation, routing, CAPI, and compliance settings">
+            <div className="space-y-4">
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Gateway Endpoint</h3>
+                <div className="grid grid-cols-2 gap-3 max-w-2xl">
+                  <div><label className="text-[10px] text-muted-foreground">Gateway URL</label><Input className="mt-1 h-8 text-xs bg-secondary" placeholder="https://gateway.legenex.com/inbound" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">Shared Secret</label><Input type="password" className="mt-1 h-8 text-xs bg-secondary" placeholder="••••••••" /></div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">LeadByte Status Mapping</h3>
+                <div className="grid grid-cols-2 gap-2 max-w-2xl text-xs">
+                  {[['sold', 'Sold'], ['unsold', 'Unsold'], ['disqualified', 'Disqualified'], ['returned', 'Returned'], ['fake', 'Fake']].map(([lb, internal]) => (
+                    <div key={lb} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                      <span className="font-mono text-[10px] text-muted-foreground">{lb}</span>
+                      <span className="text-muted-foreground">→</span>
+                      <span className="font-medium">{internal}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Buyer Delivery Endpoints</h3>
+                <p className="text-[10px] text-muted-foreground mb-2">Configure per-buyer API endpoints, auth tokens, and delivery methods. Set as environment variables.</p>
+                <div className="space-y-1 max-w-2xl">
+                  {['Walker Advertising', 'Inbounds', '4LegalLeads', 'Rainwater Holt & Sexton'].map(b => (
+                    <div key={b} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                      <span className="text-xs font-medium flex-1">{b}</span>
+                      <Button variant="outline" size="sm" className="text-[9px] h-6">Configure</Button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Supplier Source Mapping</h3>
+                <p className="text-[10px] text-muted-foreground mb-2">Map supplier SID to source system and brand.</p>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Validation & Routing Rules</h3>
+                <p className="text-[10px] text-muted-foreground mb-2">Manage validation rules on the Gateway pages. Routing rules are editable on the Routing Rules page.</p>
+                <div className="flex gap-2">
+                  <Link to="/gateway/routing-rules"><Button variant="outline" size="sm" className="text-xs">Routing Rules</Button></Link>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">CAPI Pixel / Platform Settings</h3>
+                <div className="grid grid-cols-2 gap-3 max-w-2xl">
+                  <div><label className="text-[10px] text-muted-foreground">Meta Pixel ID</label><Input className="mt-1 h-8 text-xs bg-secondary" placeholder="123456789" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">Meta Access Token</label><Input type="password" className="mt-1 h-8 text-xs bg-secondary" placeholder="••••••••" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">Google Ads Customer ID</label><Input className="mt-1 h-8 text-xs bg-secondary" placeholder="000-000-0000" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">Taboola Account ID</label><Input className="mt-1 h-8 text-xs bg-secondary" placeholder="account-id" /></div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Event Name Mapping</h3>
+                <div className="grid grid-cols-2 gap-2 max-w-2xl text-xs">
+                  {[['Lead', 'Lead'], ['Sold_Lead', 'Purchase'], ['QualifiedLead', 'QualifiedLead']].map(([internal, platform]) => (
+                    <div key={internal} className="flex items-center gap-2 p-2 rounded" style={{ background: '#1A1E24' }}>
+                      <span className="font-mono text-[10px] text-muted-foreground">{internal}</span>
+                      <span className="text-muted-foreground">→</span>
+                      <span className="font-medium">{platform}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">TrustedForm / Jornaya Field Mapping</h3>
+                <p className="text-[10px] text-muted-foreground">Map incoming webhook fields to gateway lead fields for compliance evidence.</p>
+              </div>
+
+              <div>
+                <h3 className="text-[11px] uppercase tracking-wider text-muted-foreground mb-2">Duplicate Window Settings</h3>
+                <div className="grid grid-cols-3 gap-3 max-w-lg">
+                  <div><label className="text-[10px] text-muted-foreground">Phone Dedupe Window (hrs)</label><Input type="number" defaultValue={72} className="mt-1 h-8 text-xs bg-secondary" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">Email Dedupe Window (hrs)</label><Input type="number" defaultValue={72} className="mt-1 h-8 text-xs bg-secondary" /></div>
+                  <div><label className="text-[10px] text-muted-foreground">TrustedForm Dedupe (hrs)</label><Input type="number" defaultValue={168} className="mt-1 h-8 text-xs bg-secondary" /></div>
+                </div>
+              </div>
+
+              <Button size="sm" className="text-xs">Save Gateway Settings</Button>
+              <p className="text-[10px] text-muted-foreground">Settings saved as draft. Requires gateway deployment to apply changes.</p>
+            </div>
+          </SectionPanel>
         </TabsContent>
 
         <TabsContent value="roles">

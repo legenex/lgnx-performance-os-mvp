@@ -10,6 +10,7 @@ import AlertsPanel from '@/components/command/AlertsPanel';
 import ActionsPanel from '@/components/command/ActionsPanel';
 import ImportChecklist from '@/components/command/ImportChecklist';
 import AdsIntelligencePanel from '@/components/command/AdsIntelligencePanel';
+import LeadGatewayPanel from '@/components/command/LeadGatewayPanel';
 import { formatMoney, moneyColor } from '@/lib/formatters';
 import { DollarSign, FileText, CreditCard, BarChart3, AlertTriangle, TrendingDown, Shield } from 'lucide-react';
 
@@ -164,6 +165,9 @@ export default function CommandCenter() {
         <AlertsPanel alerts={metrics.criticalAlerts} />
         <ActionsPanel metrics={metrics} />
       </div>
+
+      {/* Lead Gateway */}
+      <LeadGatewayPanel />
 
       {/* Ads Intelligence */}
       <AdsIntelligencePanel />

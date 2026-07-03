@@ -27,6 +27,14 @@ const IMPORTERS = [
   { key: 'taboola-ads', label: 'Taboola CSV/API', entity: 'AdDailyMetric', icon: '📰' },
   { key: 'creative-meta', label: 'Creative / Ad Metadata CSV', entity: 'AdCreative', icon: '🎨' },
   { key: 'ad-daily-metrics', label: 'Daily Ad Metrics CSV', entity: 'AdDailyMetric', icon: '📊' },
+  // Gateway Imports
+  { key: 'gateway-leads', label: 'Gateway Lead Payload CSV/JSON', entity: 'GatewayLead', icon: '🌐' },
+  { key: 'gateway-webhooks', label: 'Gateway Webhook Event Export', entity: 'GatewayWebhookEvent', icon: '🔗' },
+  { key: 'leadbyte-export', label: 'LeadByte Delivery/Status Export', entity: 'GatewayLead', icon: '📋' },
+  { key: 'buyer-delivery-logs', label: 'Buyer Delivery Logs CSV', entity: 'BuyerDeliveryLog', icon: '🚚' },
+  { key: 'capi-event-logs', label: 'CAPI/Event Tracking Logs CSV', entity: 'EventTrackingLog', icon: '⚡' },
+  { key: 'compliance-export', label: 'TrustedForm/Jornaya Compliance Export', entity: 'ComplianceRecord', icon: '🛡️' },
+  { key: 'duplicate-report', label: 'Duplicate Lead Report CSV', entity: 'DuplicateLeadCheck', icon: '🔄' },
 ];
 
 export default function DataImports() {
@@ -161,6 +169,34 @@ export default function DataImports() {
           <p>• <strong className="text-foreground">Ad Daily Metric:</strong> by platform + date + campaign_id/adset_id/ad_id</p>
           <p>• <strong className="text-foreground">Ad Creative:</strong> by platform + ad_id → creative_id</p>
           <p>• <strong className="text-foreground">Ad Campaign:</strong> by platform + campaign_id</p>
+          <p>• <strong className="text-foreground">GatewayLead:</strong> by gateway_lead_id → lead_key → leadbyte_id → hash(phone + date + supplier)</p>
+          <p>• <strong className="text-foreground">BuyerDeliveryLog:</strong> by delivery_id → hash(gateway_lead_id + buyer + attempted_at)</p>
+          <p>• <strong className="text-foreground">ComplianceRecord:</strong> by gateway_lead_id</p>
+          <p>• <strong className="text-foreground">EventTrackingLog:</strong> by event_tracking_id → dedupe_key</p>
+          <p>• <strong className="text-foreground">DuplicateLeadCheck:</strong> by lead_key + duplicate_type</p>
+          <p>• <strong className="text-foreground">GatewayWebhookEvent:</strong> by event_id → hash(source + event_type + received_at)</p>
+        </div>
+      </SectionPanel>
+
+      {/* Gateway Import Pipeline */}
+      <SectionPanel title="Gateway Import Pipeline" subtitle="Lead ingestion, validation, routing, and delivery import">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-muted-foreground">
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">Gateway Lead Payload</p>
+            <p>JSON or CSV with raw inbound lead data. Auto-maps to GatewayLead fields, validates, and creates compliance records.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">LeadByte Status Export</p>
+            <p>Updates GatewayLead lead_status from LeadByte delivery results. Dedupes by leadbyte_id.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">CAPI/Event Tracking Logs</p>
+            <p>Imports Meta CAPI, Google Ads, GA4, Taboola event logs. Dedupes by dedupe_key.</p>
+          </div>
+          <div className="p-2 rounded" style={{ background: '#1A1E24' }}>
+            <p className="font-medium text-foreground mb-1">TrustedForm/Jornaya Export</p>
+            <p>Compliance evidence import. Matches by gateway_lead_id and updates compliance records.</p>
+          </div>
         </div>
       </SectionPanel>
 

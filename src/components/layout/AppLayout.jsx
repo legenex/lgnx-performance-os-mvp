@@ -4,7 +4,8 @@ import {
   LayoutDashboard, Landmark, RefreshCw, FileText, CreditCard, 
   Users, BarChart3, Target, TrendingUp, GitCompare, Upload, 
   Settings, ChevronLeft, ChevronRight, AlertTriangle, LogOut,
-  Megaphone, Palette, GitCompareArrows, ClipboardCheck, Scissors
+  Megaphone, Palette, GitCompareArrows, ClipboardCheck, Scissors,
+  Radio, Inbox, Route, Send, Activity, Shield, Zap, AlertCircle
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import MondayNumberBar from '@/components/shared/MondayNumberBar';
@@ -38,6 +39,20 @@ const NAV_SECTIONS = [
       { label: 'Campaign True Margin', path: '/campaign-margin', icon: Target },
       { label: 'Lead Economics', path: '/lead-economics', icon: TrendingUp },
       { label: 'Media Gap', path: '/media-gap', icon: BarChart3 },
+    ]
+  },
+  {
+    label: 'Lead Gateway',
+    items: [
+      { label: 'Gateway Command', path: '/gateway/command', icon: Radio },
+      { label: 'Lead Intake Monitor', path: '/gateway/lead-intake', icon: Inbox },
+      { label: 'Routing Rules', path: '/gateway/routing-rules', icon: Route },
+      { label: 'Buyer Delivery Logs', path: '/gateway/buyer-delivery', icon: Send },
+      { label: 'Supplier Feed Health', path: '/gateway/supplier-feeds', icon: Activity },
+      { label: 'Compliance & Consent', path: '/gateway/compliance', icon: Shield },
+      { label: 'CAPI / Event Tracking', path: '/gateway/capi-events', icon: Zap },
+      { label: 'Error Queue', path: '/gateway/error-queue', icon: AlertCircle },
+      { label: 'Gateway Reconciliation', path: '/gateway/reconciliation', icon: GitCompare },
     ]
   },
   {

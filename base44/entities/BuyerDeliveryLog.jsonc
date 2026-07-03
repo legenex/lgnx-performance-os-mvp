@@ -1,0 +1,91 @@
+{
+  "name": "BuyerDeliveryLog",
+  "type": "object",
+  "properties": {
+    "delivery_id": {
+      "type": "string"
+    },
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "leadbyte_id": {
+      "type": "string"
+    },
+    "buyer_name": {
+      "type": "string"
+    },
+    "buyer_id": {
+      "type": "string"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "API",
+        "LeadByte",
+        "Webhook",
+        "Email",
+        "Manual"
+      ]
+    },
+    "endpoint": {
+      "type": "string"
+    },
+    "attempted_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Success",
+        "Failed",
+        "Timeout",
+        "Rejected",
+        "Duplicate",
+        "Sold",
+        "Unsold",
+        "DQ",
+        "Pending"
+      ]
+    },
+    "http_status": {
+      "type": "number"
+    },
+    "request_payload": {
+      "type": "string"
+    },
+    "response_payload": {
+      "type": "string"
+    },
+    "response_time_ms": {
+      "type": "number",
+      "default": 0
+    },
+    "buyer_price": {
+      "type": "number",
+      "default": 0
+    },
+    "sold": {
+      "type": "boolean",
+      "default": false
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "retry_count": {
+      "type": "number",
+      "default": 0
+    },
+    "final_attempt": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "buyer_name",
+    "status"
+  ]
+}

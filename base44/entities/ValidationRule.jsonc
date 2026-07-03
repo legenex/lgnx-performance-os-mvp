@@ -1,0 +1,64 @@
+{
+  "name": "ValidationRule",
+  "type": "object",
+  "properties": {
+    "rule_name": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "vertical": {
+      "type": "string",
+      "enum": [
+        "MVA",
+        "WC",
+        "All"
+      ]
+    },
+    "rule_type": {
+      "type": "string",
+      "enum": [
+        "Required Field",
+        "State",
+        "Zip",
+        "Phone",
+        "Email",
+        "Accident Date",
+        "TrustedForm",
+        "Jornaya",
+        "Duplicate",
+        "Buyer Criteria",
+        "Supplier Quality",
+        "Custom"
+      ]
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "Reject",
+        "Warning",
+        "Info"
+      ]
+    },
+    "condition_description": {
+      "type": "string"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "number",
+      "default": 1
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_name",
+    "rule_type",
+    "severity"
+  ]
+}

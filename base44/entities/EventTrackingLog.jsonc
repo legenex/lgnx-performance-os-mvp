@@ -1,0 +1,87 @@
+{
+  "name": "EventTrackingLog",
+  "type": "object",
+  "properties": {
+    "event_tracking_id": {
+      "type": "string"
+    },
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "event_id": {
+      "type": "string"
+    },
+    "platform": {
+      "type": "string",
+      "enum": [
+        "Meta CAPI",
+        "Google Ads",
+        "GA4",
+        "Taboola",
+        "LeadByte",
+        "Other"
+      ]
+    },
+    "event_name": {
+      "type": "string",
+      "enum": [
+        "Lead",
+        "Sold_Lead",
+        "QualifiedLead",
+        "Purchase",
+        "Conversion",
+        "Custom"
+      ]
+    },
+    "event_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "event_value": {
+      "type": "number",
+      "default": 0
+    },
+    "currency": {
+      "type": "string",
+      "default": "USD"
+    },
+    "dedupe_key": {
+      "type": "string"
+    },
+    "pixel_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Sent",
+        "Failed",
+        "Queued",
+        "Retried",
+        "Ignored"
+      ],
+      "default": "Queued"
+    },
+    "request_payload": {
+      "type": "string"
+    },
+    "response_payload": {
+      "type": "string"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "retry_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [
+    "platform",
+    "event_name",
+    "status"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "name": "DuplicateLeadCheck",
+  "type": "object",
+  "properties": {
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "tc_id": {
+      "type": "string"
+    },
+    "duplicate_type": {
+      "type": "string",
+      "enum": [
+        "Phone",
+        "Email",
+        "TrustedForm",
+        "Jornaya",
+        "LeadByte",
+        "Exact Payload",
+        "Unknown"
+      ]
+    },
+    "matched_lead_key": {
+      "type": "string"
+    },
+    "matched_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "action_taken": {
+      "type": "string",
+      "enum": [
+        "Allowed",
+        "Rejected",
+        "Warned",
+        "Merged",
+        "Ignored"
+      ],
+      "default": "Rejected"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "lead_key",
+    "duplicate_type"
+  ]
+}

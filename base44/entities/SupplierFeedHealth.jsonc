@@ -1,0 +1,102 @@
+{
+  "name": "SupplierFeedHealth",
+  "type": "object",
+  "properties": {
+    "supplier_name": {
+      "type": "string"
+    },
+    "supplier_sid": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "received_count": {
+      "type": "number",
+      "default": 0
+    },
+    "validated_count": {
+      "type": "number",
+      "default": 0
+    },
+    "rejected_count": {
+      "type": "number",
+      "default": 0
+    },
+    "posted_count": {
+      "type": "number",
+      "default": 0
+    },
+    "sold_count": {
+      "type": "number",
+      "default": 0
+    },
+    "dq_count": {
+      "type": "number",
+      "default": 0
+    },
+    "returned_count": {
+      "type": "number",
+      "default": 0
+    },
+    "fake_count": {
+      "type": "number",
+      "default": 0
+    },
+    "revenue": {
+      "type": "number",
+      "default": 0
+    },
+    "payout": {
+      "type": "number",
+      "default": 0
+    },
+    "gross_margin": {
+      "type": "number",
+      "default": 0
+    },
+    "avg_response_time_ms": {
+      "type": "number",
+      "default": 0
+    },
+    "error_count": {
+      "type": "number",
+      "default": 0
+    },
+    "sell_through_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "dq_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "return_rate": {
+      "type": "number",
+      "default": 0
+    },
+    "quality_score": {
+      "type": "number",
+      "default": 0
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Healthy",
+        "Watch",
+        "Critical",
+        "Paused",
+        "Unknown"
+      ],
+      "default": "Unknown"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "supplier_name",
+    "date"
+  ]
+}

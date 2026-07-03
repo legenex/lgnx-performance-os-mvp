@@ -1,0 +1,95 @@
+{
+  "name": "RoutingRule",
+  "type": "object",
+  "properties": {
+    "rule_name": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    },
+    "priority": {
+      "type": "number",
+      "default": 1
+    },
+    "vertical": {
+      "type": "string",
+      "enum": [
+        "MVA",
+        "WC",
+        "All"
+      ]
+    },
+    "buyer_name": {
+      "type": "string"
+    },
+    "buyer_id": {
+      "type": "string"
+    },
+    "allowed_states": {
+      "type": "string"
+    },
+    "blocked_states": {
+      "type": "string"
+    },
+    "min_price": {
+      "type": "number",
+      "default": 0
+    },
+    "max_daily_cap": {
+      "type": "number",
+      "default": 0
+    },
+    "current_daily_count": {
+      "type": "number",
+      "default": 0
+    },
+    "required_fields": {
+      "type": "string"
+    },
+    "accepted_injury_types": {
+      "type": "string"
+    },
+    "accepted_treatments": {
+      "type": "string"
+    },
+    "attorney_allowed": {
+      "type": "boolean",
+      "default": true
+    },
+    "fault_rules": {
+      "type": "string"
+    },
+    "insurance_required": {
+      "type": "boolean",
+      "default": false
+    },
+    "schedule_rules": {
+      "type": "string"
+    },
+    "delivery_endpoint": {
+      "type": "string"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": [
+        "API",
+        "LeadByte",
+        "Webhook",
+        "Email",
+        "Manual"
+      ]
+    },
+    "fallback_buyer_name": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "rule_name",
+    "buyer_name"
+  ]
+}

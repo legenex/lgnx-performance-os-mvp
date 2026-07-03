@@ -29,6 +29,15 @@ import CreativeIntelligence from '@/pages/CreativeIntelligence';
 import PlatformSpendReconciliation from '@/pages/PlatformSpendReconciliation';
 import AdToLeadQuality from '@/pages/AdToLeadQuality';
 import CutWatchScaleQueue from '@/pages/CutWatchScaleQueue';
+import GatewayCommand from '@/pages/GatewayCommand';
+import LeadIntakeMonitor from '@/pages/LeadIntakeMonitor';
+import RoutingRules from '@/pages/RoutingRules';
+import BuyerDeliveryLogs from '@/pages/BuyerDeliveryLogs';
+import SupplierFeedHealth from '@/pages/SupplierFeedHealth';
+import ComplianceConsent from '@/pages/ComplianceConsent';
+import CapiEventTracking from '@/pages/CapiEventTracking';
+import ErrorQueue from '@/pages/ErrorQueue';
+import GatewayReconciliation from '@/pages/GatewayReconciliation';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -76,6 +85,15 @@ const AuthenticatedApp = () => {
           <Route path="/platform-spend-recon" element={<PlatformSpendReconciliation />} />
           <Route path="/ad-to-lead-quality" element={<AdToLeadQuality />} />
           <Route path="/cut-watch-scale" element={<CutWatchScaleQueue />} />
+          <Route path="/gateway/command" element={<GatewayCommand />} />
+          <Route path="/gateway/lead-intake" element={<LeadIntakeMonitor />} />
+          <Route path="/gateway/routing-rules" element={<RoutingRules />} />
+          <Route path="/gateway/buyer-delivery" element={<BuyerDeliveryLogs />} />
+          <Route path="/gateway/supplier-feeds" element={<SupplierFeedHealth />} />
+          <Route path="/gateway/compliance" element={<ComplianceConsent />} />
+          <Route path="/gateway/capi-events" element={<CapiEventTracking />} />
+          <Route path="/gateway/error-queue" element={<ErrorQueue />} />
+          <Route path="/gateway/reconciliation" element={<GatewayReconciliation />} />
           <Route path="/lead-economics" element={<LeadEconomics />} />
           <Route path="/reconciliation" element={<Reconciliation />} />
           <Route path="/imports" element={<DataImports />} />

@@ -1,0 +1,90 @@
+{
+  "name": "GatewayWebhookEvent",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "Leadshook",
+        "LeadByte",
+        "Gateway",
+        "Supplier",
+        "Buyer",
+        "MetaCAPI",
+        "Google",
+        "Other"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "Lead Received",
+        "Lead Validated",
+        "Lead Rejected",
+        "Posted",
+        "Sold",
+        "Unsold",
+        "Disqualified",
+        "Returned",
+        "Fake",
+        "Delivery Response",
+        "CAPI Sent",
+        "CAPI Failed",
+        "Error"
+      ]
+    },
+    "received_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "processed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "gateway_lead_id": {
+      "type": "string"
+    },
+    "lead_key": {
+      "type": "string"
+    },
+    "leadbyte_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Received",
+        "Processed",
+        "Failed",
+        "Ignored",
+        "Retried"
+      ],
+      "default": "Received"
+    },
+    "raw_payload": {
+      "type": "string"
+    },
+    "parsed_payload": {
+      "type": "string"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "retry_count": {
+      "type": "number",
+      "default": 0
+    },
+    "next_retry_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "source",
+    "event_type",
+    "status"
+  ]
+}
